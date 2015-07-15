@@ -19,7 +19,10 @@ import org.intercard.template.data.db.IEntity;
  */
 @Entity
 @Table(name = "GUIUSER")
-@NamedQueries({ @NamedQuery(name = "findGUserByName", query = "SELECT g FROM GuiUser g WHERE g.username = :name") })
+@NamedQueries({
+		@NamedQuery(name = "findGUserByName", query = "SELECT g FROM GuiUser g WHERE g.username = :name"),
+		@NamedQuery(name = "findGUserByID", query = "SELECT g FROM GuiUser g where g.id = :id"),
+		@NamedQuery(name = "findAllGUser", query = "SELECT g FROM GuiUser g") })
 public class GuiUser implements IEntity {
 
 	/**
