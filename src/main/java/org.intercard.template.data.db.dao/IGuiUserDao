@@ -1,0 +1,10 @@
+package org.intercard.template.data.db.dao;
+
+import org.intercard.template.data.db.domain.GuiUser;
+import org.intercard.template.data.db.ex.DataException;
+
+public interface IGuiUserDao extends IDao<GuiUser> {
+
+	public GuiUser findByName(String tName) throws DataException;
+
+}
