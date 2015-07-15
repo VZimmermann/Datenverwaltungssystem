@@ -1,0 +1,11 @@
+package org.intercard.template.data.db.dao;
+
+import org.intercard.template.data.db.domain.Desfire;
+import org.intercard.template.data.db.ex.DataException;
+
+
+public interface IDesfireDao extends IDao<Desfire> {
+
+	Desfire findDesfire(String tName) throws DataException;
+
+}
