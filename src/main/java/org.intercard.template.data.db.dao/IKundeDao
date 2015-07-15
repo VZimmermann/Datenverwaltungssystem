@@ -1,0 +1,16 @@
+package org.intercard.template.data.db.dao;
+
+import java.util.List;
+
+import org.intercard.template.data.db.domain.Kunde;
+import org.intercard.template.data.db.ex.DataException;
+
+public interface IKundeDao extends IDao<Kunde> {
+
+	public Kunde findbyName(String tName) throws DataException;
+
+	public Kunde findWithBags(Long id) throws DataException;
+
+	public List<Kunde> findAllWithBags() throws DataException;
+
+}
