@@ -1,5 +1,7 @@
 package org.intercard.template.data.db.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.intercard.template.data.db.dao.ILegicDao;
@@ -13,13 +15,30 @@ public class LegicDao extends AbstractDao<Legic> implements ILegicDao {
 		return Legic.class;
 	}
 
+	/** Find Legic by N1V/N1A/N2/N3 connected to String */
 	@Override
-	public Legic findLegic(String tName) throws DataException {
+	public Legic findLegicbyID(String id) throws DataException {
 
-		Query q = entityManager.createNamedQuery("findLegic");
-		q.setParameter("name", tName);
+		Query q = entityManager.createNamedQuery("findLegicbyID");
+		q.setParameter("systemnummergesamt", id);
 
 		// GENAU einer erwartet.
 		return (Legic) q.getSingleResult();
+	}
+
+	/** Find all active Legic cardtechnologies */
+	@Override
+	public Legic findActivLegic(boolean activ) throws DataException {
+		Query q = entityManager.createNamedQuery("findActiveLegic");
+		q.setParameter("activ", activ);
+		return (Legic) q.getSingleResult();
+	}
+
+	/** Find all Legic cards */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Legic> findAllLegic() throws DataException {
+		Query q = entityManager.createNamedQuery("findAllLegic");
+		return (List<Legic>) q.getResultList();
 	}
 }
