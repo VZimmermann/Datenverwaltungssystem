@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"	>
+		<h:head>
+		<h:outputStylesheet library="css" name="style.css" />
+
+	</h:head>
+<body>
+	<ui:composition>
+	<hr></hr>
+		<b:row class="navbar-text pull-right">
+		
+		<!-- hier kommt noch eine Fehlermeldung, weil keine richtige Seite definiert wurde für den Outcome -->
+			<h:link outcome="#" role="button" value="Anwenderdokumentation" target="_blank"></h:link> | 
+			<a href="mailto:U.Goenner@intercard.org" id="mailto" target="_blank">bei weiteren Fragen Mail an Uwe Gönner</a> |
+			 <h:outputText value="Copyright (c) 2015" />
+	
+		</b:row>
+	</ui:composition>
+</body>
+</html>
