@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"	>
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+
+</h:head>
+<body>
+	<ui:composition>
+
+		<b:row>
+
+			<b:column span="12">
+				<h:graphicImage
+					value="resources/IC-Design_Datenabruf-Kunden_VZ_20150629.png"
+					class="img-responsive" border="0" alt="Logo"></h:graphicImage>
+
+			</b:column>
+		</b:row>
+<br></br>
+		
+			
+			<b:navBar brand="Kundendatenverwaltung">
+				<ul class="nav navbar-nav navbar-right" style="margin:5px">
+					<b:navLink value="Startseite" href="Startseite_login.xhtml"
+						icon="home"></b:navLink>
+					<b:navLink value="Kundeninformation suchen"
+						href="search_login.xhtml" icon="search"></b:navLink>
+					<b:navLink value="Kunde anlegen" href="new_customer.xhtml"
+						icon="plus"></b:navLink>
+					<b:navLink value="freie Systemnummer suchen"
+						href="freie_Sysnr_suchen.xhtml" icon="search"></b:navLink>
+					<b:navLink value="Seriennummernbereich reservieren"
+						href="freie_Sysnr_suchen.xhtml" icon="search"></b:navLink>
+					<b:navLink value="ausloggen" href="Startseite.xhtml" icon="off"></b:navLink>
+				</ul>
+			</b:navBar>
+			<br></br>
+		
+
+	</ui:composition>
+</body>
+</html>
