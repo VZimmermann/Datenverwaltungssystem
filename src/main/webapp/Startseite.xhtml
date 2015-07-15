@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"	>
+<h:body>
+	<ui:composition template="templates/common.xhtml">
+
+		<ui:define name="content">
+
+			<b:row>
+				<b:column span="3"></b:column>
+				<b:column span="6">
+					<h:link outcome="search.xhtml" class="btn btn-lg btn-block"
+						style="background-color:#9b193f;color:#ececec;border-radius:0">
+						<span class="glyphicon glyphicon-search"></span>
+					Kundeninformationen suchen</h:link>
+
+					<br></br>
+				</b:column>
+				<b:column span="3"></b:column>
+			</b:row>
+			<b:row>
+				<b:column span="3"></b:column>
+				<b:column span="6">
+					<h:link outcome="#" class="btn btn-lg btn-block disabled"
+						style="background-color:#9b193f;color:#ececec;border-radius:0">
+						<span class="glyphicon glyphicon-plus"></span> neuen
+					Kunde anlegen</h:link>
+					<br></br>
+				</b:column>
+				<b:column span="3"></b:column>
+			</b:row>
+
+			<b:row>
+				<b:column span="3"></b:column>
+				<b:column span="6">
+					<h:link outcome="#" class="btn btn-lg btn-block disabled"
+						style="background-color:#9b193f;color:#ececec;border-radius:0">
+						<span class="glyphicon glyphicon-search"></span>
+					freie Systemnummer suchen</h:link>
+					<br></br>
+				
+				</b:column>
+				<b:column span="3"></b:column>
+			</b:row>
+		
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
