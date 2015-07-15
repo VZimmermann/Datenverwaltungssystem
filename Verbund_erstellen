@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"	>
+<h:body>
+	<ui:composition template="templates/common_login.xhtml">
+		<ui:define name="content">
+			<b:row >
+	<b:column span="2"></b:column>
+	<b:column span="8">
+				<b:panel>
+					<f:facet name="heading">Verbund anlegen</f:facet>
+					<h:form id="form">
+						
+						<label>Länderkürzel 	</label>
+						<!-- Selektion wenn Länderkürzel DE dann nur Bundesländer aus DE -->
+						<h:selectOneMenu value="#">
+							<f:selectItem itemValue="1" itemLabel="Item 1" />
+							<f:selectItem itemValue="2" itemLabel="Item 2" />
+						</h:selectOneMenu>
+						<p>&nbsp;</p>
+						<label>Bundesland </label>
+						<h:selectOneMenu value="#">
+							<f:selectItem itemValue="1" itemLabel="Item 1" />
+							<f:selectItem itemValue="2" itemLabel="Item 2" />
+						</h:selectOneMenu>
+				<br></br><br></br>
+						
+						<label>Verbundsname</label>
+						 <b:inputText value="#" placeholder="Verbundsname"></b:inputText>
+						<br></br>
+						<!--
+						<label>Verbundsmutter</label>
+						 <b:inputText value="#" placeholder="Verbundsmutter"></b:inputText>
+						  -->
+						  <h:commandButton value="speichern" action="#" />
+					</h:form>
+				</b:panel>
+				</b:column>
+			<b:column span="2"></b:column>
+			</b:row>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
