@@ -1,0 +1,10 @@
+package org.intercard.template.data.db.dao;
+
+import org.intercard.template.data.db.domain.Legic;
+import org.intercard.template.data.db.ex.DataException;
+
+public interface ILegicDao extends IDao<Legic> {
+
+	Legic findLegic(String tName) throws DataException;
+
+}
