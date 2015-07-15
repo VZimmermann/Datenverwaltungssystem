@@ -7,8 +7,13 @@ import org.intercard.template.data.db.ex.DataException;
 
 public interface IKundeDao extends IDao<Kunde> {
 
+	/** find all Clients by Name */
 	public Kunde findbyName(String tName) throws DataException;
 
+	/**
+	 * Kunde joinen with KartenTechnologien, find Kunde with its
+	 * Cardtechnologies
+	 */
 	public Kunde findWithBags(Long id) throws DataException;
 
 	public List<Kunde> findAllWithBags() throws DataException;
