@@ -21,7 +21,10 @@ import org.intercard.template.data.db.IEntity;
  */
 @Entity
 @Table(name = "SerienNummer")
-@NamedQueries({ @NamedQuery(name = "findSerialnumber", query = "SELECT s FROM SerienNummer s") })
+@NamedQueries({
+		@NamedQuery(name = "findAllSeriennummern", query = "SELECT s FROM SerienNummer s"),
+		@NamedQuery(name = "findSeriennummerbySNAnfang", query = "SELECT s FROM SerienNummer s where s.snanfang = :snanfang"),
+		@NamedQuery(name = "findSeriennummerbyDate", query = "SELECT s FROM SerienNummer s where s.vergebenam = :date") })
 public class SerienNummer implements IEntity {
 
 	@Transient
