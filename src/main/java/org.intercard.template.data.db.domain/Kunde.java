@@ -32,7 +32,12 @@ import org.intercard.template.data.db.domain.enums.Laenderkuerzel;
 @Table(name = "Kunde")
 @NamedQueries({
 		@NamedQuery(name = "findKundebyName", query = "SELECT k FROM Kunde k where k.kundenname= :name "),
+		/**
+		 * Join from Kunde and KartenTechnologien, so that the Kundennr is
+		 * standing in KartenTechnologien
+		 */
 		@NamedQuery(name = "findKundeWithBags", query = "SELECT k FROM Kunde k join fetch k.kartenTechnologien t where k.id = :id "),
+
 		@NamedQuery(name = "findAllKundeWithBags", query = "SELECT k FROM Kunde k join fetch k.kartenTechnologien t   ") })
 public class Kunde implements IEntity {
 
@@ -76,7 +81,7 @@ public class Kunde implements IEntity {
 	private List<KartenTechnologien> kartenTechnologien;
 
 	@OneToMany(mappedBy = "kunde", fetch = FetchType.EAGER)
-	// , fetch= FetchType.EAGER -> Gefaehrlich ... !!!
+	// , fetch= FetchType.EAGER -> Gefaehrlich !!!
 	private List<SerienNummer> serienNummern;
 
 	@OneToMany(mappedBy = "kunde", fetch = FetchType.EAGER)
