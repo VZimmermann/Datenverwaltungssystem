@@ -18,4 +18,10 @@ public interface IKundeDao extends IDao<Kunde> {
 
 	public List<Kunde> findAllWithBags() throws DataException;
 
+	/** Find a client and his Seriennummern */
+	public List<Kunde> findWithSeriennummern() throws DataException;
+
+	/** Find a client and his Verbundschluessel */
+	public List<Kunde> findWithVerbundschluessel() throws DataException;
+
 }
