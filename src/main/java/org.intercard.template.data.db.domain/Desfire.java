@@ -16,7 +16,10 @@ import org.intercard.template.data.db.IEntity;
  */
 @Entity
 @Table(name = "Desfire")
-@NamedQueries({ @NamedQuery(name = "findDesfire", query = "SELECT d FROM Desfire d") })
+@NamedQueries({
+		@NamedQuery(name = "findAllDesfire", query = "SELECT d FROM Desfire d"),
+		@NamedQuery(name = "findActivDesfire", query = "SELECT d FROM Desfire d where d.activ = :activ"),
+		@NamedQuery(name = "findDesfirebyID", query = "SELECT d FROM Desfire d where d.systemnummergesamt = :systemnummergesamt") })
 public class Desfire extends KartenTechnologien implements IEntity {
 
 	/**
@@ -42,6 +45,8 @@ public class Desfire extends KartenTechnologien implements IEntity {
 
 	@Column(name = "Minorversion", nullable = true)
 	private String minorversion;
+
+	String systemnummergesamt = N1V + "/" + N1A + "/" + N2 + "/" + N3;
 
 	// ++++++++++++++++++++++++++++++++++++
 	public Desfire() {
