@@ -18,7 +18,10 @@ import org.intercard.template.data.db.domain.enums.Aufbautype;
  */
 @Entity
 @Table(name = "Classic")
-@NamedQueries({ @NamedQuery(name = "findClassic", query = "SELECT c FROM Classic c") })
+@NamedQueries({
+		@NamedQuery(name = "findActivClassic", query = "SELECT c FROM Classic c where c.activ= :activ"),
+		@NamedQuery(name = "findClassicbyID", query = "SELECT c FROM Classic c where c.systemnummergesamt = :systemnummergesamt"),
+		@NamedQuery(name = "findAllClassic", query = "SELECT c FROM Classic c ") })
 public class Classic extends KartenTechnologien {
 
 	/**
@@ -43,6 +46,9 @@ public class Classic extends KartenTechnologien {
 	@Column(name = "N3", nullable = true)
 	private Integer N3;
 
+	/** Connect all parts of the Systemnummer */
+	String systemnummergesamt = N1V + "/" + N1A + "/" + N2 + "/" + N3;
+
 	// ++++++++++++++++++++++++++++++++++++
 	public Classic() {
 
@@ -64,6 +70,13 @@ public class Classic extends KartenTechnologien {
 
 	public void setType(Aufbautype type) {
 		this.type = type;
+	}
+
+	public String getSystemnummergesamt() {
+
+		String Systemnummergesamt = N1V + "/" + N1A + "/" + N2 + "/" + N3;
+		return Systemnummergesamt;
+
 	}
 
 	public Integer getN1V() {
