@@ -1,0 +1,11 @@
+package org.intercard.template.data.db.dao;
+
+import org.intercard.template.data.db.domain.KartenTechnologien;
+import org.intercard.template.data.db.ex.DataException;
+
+public interface IKartenTechnologienDao extends IDao<KartenTechnologien> {
+
+	KartenTechnologien findKartentechnologien(String tName)
+			throws DataException;
+
+}
