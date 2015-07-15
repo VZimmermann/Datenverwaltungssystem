@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"	>
+<h:body>
+	<ui:composition template="templates/common.xhtml">
+		<ui:define name="content">
+			<b:row>
+				<h:form>
+					<b:well>
+						<!-- Panelgrid is centralized through margin:0 auto -->
+						<h:panelGrid columns="2" style="margin:0 auto;">
+							<h:outputText for="username" value="Benutzername:&#160;&#160;" />
+							<b:inputText id="username" value="#{guiuserController.user.username}" required="true"></b:inputText>
+
+
+							<h:outputText for="password" value="Passwort:" />
+							<b:inputSecret id="password" value="#{guiuserController.user.password}" required="true" />
+
+							<h:commandButton value="login" type="submit" action="#{guiuserController.load}"
+								class="btn btn-default" />
+							<h:commandButton value="reset" type="reset"
+								class="btn btn-default" />
+						</h:panelGrid>
+					</b:well>
+				</h:form>
+				
+				
+				  <h:dataTable value="#{guiuserController.userList}" var="user" >
+				      <h:column>
+				        <!-- Via this facet we define the table header (column 1) -->
+				        <f:facet name="header">
+				          <h:column>
+				            <h:outputText value="Name"></h:outputText>
+				          </h:column>
+				        </f:facet>
+				        <h:outputText value="#{user.username}"></h:outputText>
+				      </h:column>
+				      <h:column>
+				        <!-- Via this facet we define the table header (column 2) -->
+				        <f:facet name="header">
+				          <h:column>
+				            <h:outputText value="Password"></h:outputText>
+				          </h:column>
+				        </f:facet>
+				        <h:outputText value="#{user.password}"></h:outputText>
+				
+				      </h:column>
+				      </h:dataTable>
+				<br></br>
+			</b:row>
+
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>
