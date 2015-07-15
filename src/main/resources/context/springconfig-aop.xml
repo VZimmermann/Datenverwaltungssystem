@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- DokuTK -->
+	<!-- 
+		Aspekt: Teilfunktion eines Programms wie z. B. Sicherheit. Eine Aspektklasse implementiert die Aspektfunktionalität
+		Advice: definiert, welche Funktionalität des Aspekts wo und in welcher Form aufgerufen wird. Bsp: Aufruf vor oder nach dem Methodenaufruf
+		Advisor: Kombination aus Advice und Pointcut
+		Joinpoint: bezeichnet die Stelle, an der ein Advice afugerufen werden kann. Spring kennt nur Aufruf einer Methode
+		Pointcut: Sammlung von Stellen, an denen Advices aufgerufen werden. z. B. alle Methoden einer Serviceklasse
+	 -->
+	<!-- Ende DokuTK -->
+	
+	<import resource="springconfig-datasource.xml" />
+	<import resource="springconfig-service.xml" />
+		
+
+	<!-- Laufzeit-Logger aspect -->
+	<bean id="runtimeLogger" class="org.intercard.template.aop.MethodRuntimeLogger" />
+
+	<!-- Aufruf-Logger aspect -->
+	<bean id="methodCallLogger" class="org.intercard.template.aop.MethodCallLogger" />
+
+
+
+  	<!-- Transaktionsmanager -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	    <property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<!-- =================================================================================================================== -->
+	<!--  AOP Transaktion Möglichkeit 1 : Transactional Annotation -->
+	<!-- =================================================================================================================== -->
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" />  -->
+
+	<!-- =================================================================================================================== -->
+	<!--  AOP Transaktion Möglichkeit 2 : Definition Advice und aop:config (benötigt aspejctj.jar,aspectjweaver.jar,cglib.jar) -->
+	<!-- =================================================================================================================== -->
+	<!-- Transactions-Advice -->
+  	<tx:advice id="txAdviceTransaction" transaction-manager="transactionManager">
+  		<tx:attributes>
+  			<tx:method name="find*" read-only="true" />
+    		<tx:method name="do*" propagation="REQUIRED" rollback-for="org.intercard.template.data.db.ex.DataException" /> 
+  		</tx:attributes>
+  	</tx:advice>
+  	
+	<!-- =================================================================================================================== -->
+	<!-- Aspektkonfiguration -->
+	<!-- =================================================================================================================== -->
+
+ 
+ 	<aop:config> 
+		<!-- ___________________________________ Pointcuts __________________________ -->
+		<!-- ein Pointcut wird definiert durch seine id und die methoden wie in der expression angegeben gefiltert -->
+		<!--  <aop:pointcut id="transactionMethods"  expression="execution(* org.intercard.shopservice.dao.impl.hibernate.*.*(..) )"/> 	--> 
+ 		
+ 		<aop:pointcut id="daoMethods"  expression="execution(* org.intercard.template.data.db.dao.*.*(..) )"/>
+		
+
+		<!-- ___________________________________ Aspekte __________________________ -->
+
+		<!-- Aspekt Datenbank-Transaktion -->  		
+  		<aop:advisor advice-ref="txAdviceTransaction" pointcut-ref="daoMethods" order="1"/> 
+
+
+		<!-- Methoden-Laufzeit-Logger -->
+		<!-- 		
+		<aop:aspect id="profilingAspect" ref="runtimeLogger" order="2">
+			<aop:around method="logRuntime" pointcut-ref="serviceMethods" />
+		</aop:aspect> 
+		-->
+
+
+
+		<!-- Methoden Eintritt- und Austritt-Logger -->
+		<!-- 
+		<aop:aspect id="loggingAspect" ref="methodCallLogger" order="0"> 
+			<aop:before          method="logMethodEntry" pointcut-ref="serviceMethods" />
+			<aop:after-returning method="logMethodExit"  returning="result" pointcut-ref="serviceMethods" />
+		</aop:aspect>
+		 -->
+
+	</aop:config>
+	
+</beans>
