@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Service Layer -->
+
+	<import resource="springconfig-data.xml" />
+
+	<bean id="propertyService"
+		class="org.intercard.propertyservice.impl.XmlPropertyServiceImpl" />
+
+	<bean id="propertyUtils" class="org.intercard.template.util.PropertyUtils">
+		<property name="propertyService" ref="propertyService" />
+	</bean>
+
+	<bean id="org.intercard.template.service.IGuiService" class="org.intercard.template.service.impl.GuiService">
+		<property name="guiUserDao"
+			ref="org.intercard.template.data.db.dao.IGuiUserDao" />
+	</bean>
+	
+<!-- 	<bean id="org.intercard.template.service.ICDKAuftragsdeckblattGenerierungService" class="org.intercard.template.service.impl.CDKAuftragsdeckblattGenerierungService">
+		<property name="#"
+			ref="#" />
+	</bean>
+
+	<bean id="org.intercard.template.service.IExportService" class="org.intercard.template.service.impl.ExportService">
+		<property name="#"
+			ref="#" />
+	</bean>
+
+	<bean id="org.intercard.template.service.IKartenTechnologienService" class="org.intercard.template.service.impl.KartenTechnologienService">
+		<property name="#"
+			ref="#" />
+	</bean>
+
+	<bean id="org.intercard.template.service.IKundeService" class="org.intercard.template.service.impl.KundeService">
+		<property name="#"
+			ref="#" />
+	</bean>
+
+	<bean id="org.intercard.template.service.ISeriennummerService" class="org.intercard.template.service.impl.SeriennummerService">
+		<property name="#"
+			ref="#" />
+	</bean>
+	
+	<bean id="org.intercard.template.service.ISystemnummerService" class="org.intercard.template.service.impl.SystemnummerService">
+		<property name="#"
+			ref="#" />
+	</bean>
+	
+	<bean id="org.intercard.template.service.IVerbundService" class="org.intercard.template.service.impl.VerbundService">
+		<property name="#"
+			ref="#" />
+	</bean> -->
+</beans>
