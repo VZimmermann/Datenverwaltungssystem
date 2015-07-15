@@ -1,0 +1,35 @@
+html, body {
+	color: #59584f;
+	/*color:#ececec*/;
+	width: 100%;
+	padding: 1%;
+}
+
+.balken {
+	background-color: #9b193f;
+ padding: 0.6%;
+
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	color: #59584f;
+	text-decoration: none;
+}
+
+
+#internetadresse {
+	color: #9b193f;
+	/* margin:0 auto; */
+	padding:0.5;
+}
+
+#leer {
+	padding: 13%;
+}
+
+#internetadresse	{
+	color: #9b193f;
+	padding-left:0.9%;
+
+}
+
