@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"	>
+
+
+	<h:head>
+		<h:outputStylesheet library="css" name="style.css" />
+
+	</h:head>
+	<body> 
+	<ui:composition>
+
+		<b:row>
+
+			<b:column span="12">
+				<h:graphicImage
+					value="resources/IC-Design_Datenabruf-Kunden_VZ_20150629.png"
+					class="img-responsive" border="0" alt="Logo"></h:graphicImage>
+			</b:column>
+					
+		</b:row>
+		<br></br>
+
+			<b:navBar brand="Kundendatenverwaltung" >
+				<!-- entspricht dem Navbar header von Bootstrap -->
+				<ul class="nav navbar-nav navbar-right" style="margin:5px">
+					<li><a href="Startseite.xhtml"><span
+							class="glyphicon glyphicon-home" ></span>&nbsp;&nbsp;Startseite</a></li>
+					<li ><a href="login.xhtml"><span
+							class="glyphicon glyphicon-log-in" ></span>&nbsp;&nbsp;anmelden</a></li>
+				</ul>
+			</b:navBar>
+			<br></br>
+		
+
+
+
+	</ui:composition>
+</body>
+</html>
