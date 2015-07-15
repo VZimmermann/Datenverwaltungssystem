@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.intercard.org" elementFormDefault="qualified"
+	xmlns="http://www.intercard.org">
+
+	<xs:annotation>
+		<xs:documentation>
+			Schema fuer den config-service 
+			Copyright 2012	Intercard.org. 
+			Alle Rechte vorbehalten.
+		</xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="smartCONFIG" type="smartCONFIG">
+	</xs:element>
+
+	<xs:complexType name="smartCONFIG">
+		<xs:annotation>
+			<xs:documentation>Konfiguration des Templates</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GENERAL" type="GENERAL"></xs:element> 
+
+		</xs:sequence>
+		<xs:attribute name="appName" type="xs:string" default="template" />
+		<xs:attribute name="appSubName" type="xs:string" default="" />
+		<xs:attribute name="versionApp" type="xs:string" default="1.0.0" />
+		<xs:attribute name="versionXSD" type="xs:string" default="1.0" />
+	</xs:complexType>
+
+   <!-- ############################################### -->
+   <!-- interne Typen - Definition immer am Dateiende! -->
+   <!-- ############################################### -->
+
+   <xs:simpleType name="mailPattern">
+      <xs:annotation>
+         <xs:documentation>name@host.ext</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern
+            value="^((?:(?:(?:\w[\.\-\+]?)*)\w)+)\@((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})$" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="datePattern">
+      <xs:annotation>
+         <xs:documentation>YYYY.MM.TT</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern
+            value="(19|20)\d\d([.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="timePattern">
+      <xs:annotation>
+         <xs:documentation>SS:MM</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[012][0-9][:][0-5][0-9]" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="dateTimePattern">
+      <xs:annotation>
+         <xs:documentation>YYYY.MM.TT SS:MM</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern
+            value="(19|20)\d\d([.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01]) [012][0-9][:][0-5][0-9]" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="ipPatternV4">
+      <!-- Testfälle -->
+      <!-- 10.30.33.1 -->
+      <!-- 255.255.255.0 -->
+      <!-- 192.168.104.13 -->
+      <xs:annotation>
+         <xs:documentation>x.x.x.x</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern
+            value="\A(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\z" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="ipPatternV6">
+      <!-- Testfälle -->
+      <!-- fec0:0:0:ffff::1 -->
+      <!-- fe80::d869:e586:3314:634d -->
+      <!-- fe80::15c3:f76e:424a:9eb2 -->
+      <!-- fe80::897a:3922:b6cc:de44 -->
+      <!-- fe80::150f:be10:a8d9:a985 -->
+      <!-- 2001:0db8:85a3:08d3:1319:8a2e:0370:7347 -->
+      <!-- ::2222:3333:4444:5555:6666:123.123.123.123 -->
+      <!-- 1111:2222:3333:4444:5555:6666:7777:8888 -->
+      <!-- ::ffff:7f00:1 -->
+      <!-- IPV6_HEX4DECCOMPRESSED_REGEX = "\A((?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?)::((?:[0-9A-Fa-f]{1,4}:)*)(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\z"; -->
+      <!-- IPV6_6HEX4DEC_REGEX = "\A((?:[0-9A-Fa-f]{1,4}:){6,6})(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\\d?\d)){3}\z"; -->
+      <!-- IPV6_HEXCOMPRESSED_REGEX = "\A((?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?)::((?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?)\z"; -->
+      <!-- IPV6_REGEX = "\A(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}\z"; -->
+      <xs:annotation>
+         <xs:documentation>x:x:x:x:x:x:x:x</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern
+            value="\A(((?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?)::((?:[0-9A-Fa-f]{1,4}:)*)(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3})|(((?:[0-9A-Fa-f]{1,4}:){6,6})(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\\d?\d)){3})|(((?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?)::((?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4})*)?))|((?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4})\z" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="macPattern">
+      <!-- Testfälle -->
+      <!-- 68:B5:99:F8:2F:BA -->
+      <!-- 00:24:D7:84:43:9C -->
+      <!-- 00:50:56:C0:00:01 -->
+      <!-- 00:50:56:C0:00:08 -->
+      <xs:annotation>
+         <xs:documentation>xx:xx:xx:xx:xx:xx</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <!-- <xs:simpleType name="Windows File Name"> -->
+   <!-- <xs:restriction base="xs:string"> -->
+   <!-- <xs:pattern -->
+   <!-- value="(?i)^(?!^(PRN|AUX|CLOCK\$|NUL|CON|COM\d|LPT\d|\..*)(\..+)?$)[^\\\./:\*\?\"<>\|][^\\/:\*\?\"<>\|]{0,254}$" 
+      /> -->
+   <!-- </xs:restriction> -->
+   <!-- </xs:simpleType> -->
+
+   <xs:simpleType name="floatNumberPattern">
+      <xs:annotation>
+         <xs:documentation>nnn.nnn</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern
+            value="[-+]?(?:\b[0-9]+(?:\.[0-9]*)?|\.[0-9]+\b)(?:[eE][-+]?[0-9]+\b)?" />
+      </xs:restriction>
+   </xs:simpleType>
+   
+   <xs:simpleType name="fileNamePattern">
+      <xs:annotation>
+         <xs:documentation>name.ext</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern
+            value="(?i)^(?!^(PRN|AUX|CLOCK\$|NUL|CON|COM\d|LPT\d|\..*)(\..+)?$)[^\\\./:\*\?\|][^\\/:\*\?\|]{0,254}$" />
+      </xs:restriction>
+   </xs:simpleType>
+   
+   <xs:simpleType name="urlPathPattern">
+      <xs:annotation>
+         <xs:documentation>schema://directory</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern
+             value="(https?|ftp)://[a-zA-Z0-9-\._]+(\.[a-zA-Z0-9-\._]+)+(/[\w-]+)*" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="windowsPathPattern">
+      <xs:annotation>
+         <xs:documentation>drive:\directory</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern
+             value="([a-zA-Z]\:)(\\[a-zA-Z0-9-\._]+(/[\w-]+)*)*" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="unixPathPattern">
+      <xs:annotation>
+         <xs:documentation>/directory</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern
+             value="(/[a-zA-Z0-9-\._]+(/[\w-]+)*)*" />
+      </xs:restriction>
+   </xs:simpleType>
+   
+   <xs:simpleType name="uncPathPattern">
+      <xs:annotation>
+         <xs:documentation>\\server\directory</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern
+             value="(\\)(\\[a-zA-Z0-9-_]+(/[\w-]+)*)*" />
+      </xs:restriction>
+   </xs:simpleType>
+   
+   <!-- ################################## -->
+   <!-- eigene Typen -->
+   <!-- ################################## -->
+
+   <xs:simpleType name="separatorPattern">
+      <xs:annotation>
+         <xs:documentation> ; oder | </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern
+             value="[;|]" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="cashStation">
+      <xs:restriction base="xs:integer">
+         <xs:minInclusive value="0" />
+         <xs:maxInclusive value="99999" />
+      </xs:restriction>
+   </xs:simpleType>
+   
+	<!-- ################################## -->
+	<!-- Sektionen -->
+	<!-- ################################## -->
+
+	
+	<xs:complexType name="GENERAL">
+		<xs:annotation>
+			<xs:documentation>
+				Email-Service für Fehler- und Service-Meldungen.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ACTIVE" type="xs:boolean" default="false">
+				<xs:annotation>
+					<xs:documentation>
+						Email-Service aktivieren.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+
+
