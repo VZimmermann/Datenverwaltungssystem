@@ -38,7 +38,9 @@ import org.intercard.template.data.db.domain.enums.Laenderkuerzel;
 		 */
 		@NamedQuery(name = "findKundeWithBags", query = "SELECT k FROM Kunde k join fetch k.kartenTechnologien t where k.id = :id "),
 
-		@NamedQuery(name = "findAllKundeWithBags", query = "SELECT k FROM Kunde k join fetch k.kartenTechnologien t   ") })
+		@NamedQuery(name = "findAllKundeWithBags", query = "SELECT k FROM Kunde k join fetch k.kartenTechnologien t   "),
+		@NamedQuery(name = "findKundsWithSeriennummer", query = "SELECT k FROM Kunde k join fetch k.serienNummern s where k.id=:id"),
+		@NamedQuery(name = "findKundeWithVerbundschluessel", query = "SELECT k FROM Kunde join fetch k.verbundschluessel v where k.id=:id") })
 public class Kunde implements IEntity {
 
 	/**
