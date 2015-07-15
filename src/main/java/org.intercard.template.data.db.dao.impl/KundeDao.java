@@ -50,4 +50,22 @@ public class KundeDao extends AbstractDao<Kunde> implements IKundeDao {
 		// GENAU einer erwartet.
 		return (List<Kunde>) q.getResultList();
 	}
+
+	/** Find a client and his Seriennummern */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Kunde> findWithSeriennummern() throws DataException {
+		Query q = entityManager.createNamedQuery("findKundeWithSeriennummer");
+
+		return (List<Kunde>) q.getResultList();
+	}
+
+	/** Find a client and his Verbundschluessel */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Kunde> findWithVerbundschluessel() throws DataException {
+		Query q = entityManager
+				.createNamedQuery("findKundeWithVerbundschluessel");
+		return (List<Kunde>) q.getResultList();
+	}
 }
