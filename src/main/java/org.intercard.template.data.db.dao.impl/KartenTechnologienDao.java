@@ -1,5 +1,7 @@
 package org.intercard.template.data.db.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.intercard.template.data.db.dao.IKartenTechnologienDao;
@@ -14,14 +16,13 @@ public class KartenTechnologienDao extends AbstractDao<KartenTechnologien>
 		return KartenTechnologien.class;
 	}
 
+	/** find all existing CardTechnologies with type KartenTechnologie */
+	@SuppressWarnings("unchecked")
 	@Override
-	public KartenTechnologien findKartentechnologien(String tName)
+	public List<KartenTechnologien> findKartentechnologien()
 			throws DataException {
 
-		Query q = entityManager.createNamedQuery("findKartentechnology");
-		q.setParameter("name", tName);
-
-		// GENAU einer erwartet.
-		return (KartenTechnologien) q.getSingleResult();
+		Query q = entityManager.createNamedQuery("findKartentechnologien");
+		return (List<KartenTechnologien>) q.getResultList();
 	}
 }
