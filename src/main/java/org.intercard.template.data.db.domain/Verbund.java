@@ -22,7 +22,9 @@ import org.intercard.template.data.db.IEntity;
  */
 @Entity
 @Table(name = "Verbund")
-@NamedQueries({ @NamedQuery(name = "findVerbund", query = "SELECT v FROM Verbund v where v.verbundname = :name") })
+@NamedQueries({
+		@NamedQuery(name = "findVerbund", query = "SELECT v FROM Verbund v where v.verbundname = :name"),
+		@NamedQuery(name = "findAllVerbund", query = "SELECT v FROM Verbund v ") })
 public class Verbund implements IEntity {
 
 	/**
