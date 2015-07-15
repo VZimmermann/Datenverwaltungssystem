@@ -16,7 +16,10 @@ import org.intercard.template.data.db.IEntity;
  */
 @Entity
 @Table(name = "Legic")
-@NamedQueries({ @NamedQuery(name = "findLegic", query = "SELECT l FROM Legic l") })
+@NamedQueries({
+		@NamedQuery(name = "findAllLegic", query = "SELECT l FROM Legic l"),
+		@NamedQuery(name = "findLegicbyID", query = "SELECT l FROM Legic l where l.systemnummergesamt = :systemnummergesamt"),
+		@NamedQuery(name = "findActivLegic", query = "SELECT l FROM Legic l where l.activ = :activ") })
 public class Legic extends KartenTechnologien implements IEntity {
 
 	/**
@@ -36,6 +39,8 @@ public class Legic extends KartenTechnologien implements IEntity {
 
 	@Column(name = "N3", nullable = true)
 	private Integer N3;
+
+	String systemnummergesamt = N1V + "/" + N1A + "/" + N2 + "/" + N3;
 
 	// ++++++++++++++++++++++++++++++++++++
 	public Legic() {
