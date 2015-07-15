@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Import -->
+	<import resource="springconfig-aop.xml" />
+	<import resource="springconfig-data.xml" />
+	<import resource="springconfig-datasource.xml" />
+	<import resource="springconfig-service.xml" />
+	<import resource="springconfig-service-web.xml" />
+
+
+</beans>
