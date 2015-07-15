@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!--  OR Mapper konfiguration  -->
+<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+
+	<!--  tell spring to use annotation based congfigurations -->
+	<!-- <context:annotation-config /> -->
+	<!--  tell spring where to find the beans -->
+	<!-- <context:component-scan base-package="org.intercard.template.data.db.domain" /> -->
+
+
+   <!-- Property Service -->   
+   <bean id="propertyService" class="org.intercard.propertyservice.impl.XmlPropertyServiceImpl" />   
+        
+   <!-- session factory for hibernate -->
+
+	<bean id="entityManagerFactory"	class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceXmlLocation" value="classpath:persistense.xml" />
+		<property name="persistenceUnitName" value="jpa-persistence" />
+		<property name="packagesToScan" value="org.intercard.template.data.db.domain" />
+	
+	</bean>
+
+
+</beans>
