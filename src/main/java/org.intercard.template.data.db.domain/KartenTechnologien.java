@@ -9,6 +9,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Transient;
 
 import org.intercard.template.data.db.IEntity;
@@ -21,6 +23,7 @@ import org.intercard.template.data.db.IEntity;
 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
+@NamedQueries({ @NamedQuery(name = "findKartentechnologien", query = "SELECT k from KartenTechnologien k") })
 public abstract class KartenTechnologien implements IEntity {
 
 	/**
