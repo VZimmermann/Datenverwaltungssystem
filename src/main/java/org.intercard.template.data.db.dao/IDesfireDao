@@ -1,11 +1,19 @@
 package org.intercard.template.data.db.dao;
 
+import java.util.List;
+
 import org.intercard.template.data.db.domain.Desfire;
 import org.intercard.template.data.db.ex.DataException;
 
-
 public interface IDesfireDao extends IDao<Desfire> {
 
-	Desfire findDesfire(String tName) throws DataException;
+	/** Find all active Desfire Cardtechnologies */
+	public Desfire findActivDesfire(boolean activ) throws DataException;
+
+	/** Find Desfire by N1V/N1A/N2/N3 connected to String */
+	public Desfire findDesfirebyID(String id) throws DataException;
+
+	/** Find all Desfire Cardtechnologies */
+	public List<Desfire> findAllDesfire() throws DataException;
 
 }
