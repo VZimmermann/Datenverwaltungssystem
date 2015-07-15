@@ -1,5 +1,7 @@
 package org.intercard.template.data.db.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.intercard.template.data.db.dao.IVerbundDao;
@@ -13,18 +15,28 @@ public class VerbundDao extends AbstractDao<Verbund> implements IVerbundDao {
 		return Verbund.class;
 	}
 
+	/** find a special Verbund by name */
 	@Override
-	public Verbund findVerbund(String tName) throws DataException {
+	public Verbund findVerbund(String name) throws DataException {
 
 		Query q = entityManager.createNamedQuery("findVerbund");
-		q.setParameter("name", tName);
+		q.setParameter("name", name);
 
 		// GENAU einer erwartet.
 		return (Verbund) q.getSingleResult();
 	}
 
+	/** Find all existing Verbünde */
+	@SuppressWarnings("unchecked")
 	@Override
-	public Verbund getVerbundWithTeilnehmer(String tName) throws DataException {
+	public List<Verbund> findAllVerbund() throws DataException {
+		Query q = entityManager.createNamedQuery("findAllVerbund");
+		return (List<Verbund>) q.getResultList();
+	}
+
+	/** Find a Verbund with its Teilnehmer */
+	@Override
+	public Verbund findVerbundWithTeilnehmer(String tName) throws DataException {
 
 		Query q = entityManager.createNamedQuery("findVerbundWithTeilnehmer");
 		q.setParameter("name", tName);
