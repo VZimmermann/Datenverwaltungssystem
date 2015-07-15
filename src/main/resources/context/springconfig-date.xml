@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="springconfig-datasource.xml" />
+
+	<!-- Data - Persistenz Beans -->
+
+	
+	<bean id="org.intercard.template.data.db.dao.IGuiUserDao" class="org.intercard.template.data.db.dao.impl.GuiUserDao"></bean>
+	<bean id="org.intercard.template.data.db.dao.IKartenTechnologienDao" class="org.intercard.template.data.db.dao.impl.KartenTechnologienDao"></bean>
+	<bean id="org.intercard.template.data.db.dao.IClassicDao" class="org.intercard.template.data.db.dao.impl.ClassicDao"></bean>
+	<bean id="org.intercard.template.data.db.dao.IDesfireDao" class="org.intercard.template.data.db.dao.impl.DesfireDao"></bean>
+	<bean id="org.intercard.template.data.db.dao.IKundeDao" class="org.intercard.template.data.db.dao.impl.KundeDao"></bean>
+	<bean id="org.intercard.template.data.db.dao.ILegicDao" class="org.intercard.template.data.db.dao.impl.LegicDao"></bean>
+	<bean id="org.intercard.template.data.db.dao.ISerienNummerDao" class="org.intercard.template.data.db.dao.impl.SerienNummerDao"></bean>
+	<bean id="org.intercard.template.data.db.dao.IVerbundDao" class="org.intercard.template.data.db.dao.impl.VerbundDao"></bean>
+	
+	
+</beans>
