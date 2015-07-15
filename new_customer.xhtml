@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:body>
+	<ui:composition template="templates/common_login.xhtml">
+		<ui:define name="content">
+			<b:row>
+				<b:column span="2"></b:column>
+				<b:column span="8">
+
+					
+						<b:panel collapsible="false">
+							<f:facet name="heading">1. Länderkürzel wählen</f:facet>
+							<p></p>
+							<b:selectOneMenu value="#" required="true">
+								<f:selectItem itemValue="0" itemLabel="Bitte auswählen"
+									selected="true" />
+								<f:selectItem itemValue="DE" itemLabel="DE" selected="true" />
+								<f:selectItem itemValue="EN" itemLabel="EN" />
+								<f:selectItem itemValue="FR" itemLabel="FR" />
+								<f:selectItem itemValue="CH" itemLabel="CH" />
+							</b:selectOneMenu>
+						</b:panel>
+
+
+
+						<b:panel collapsible="false">
+							<f:facet name="heading">2. Bundesland wählen</f:facet>
+							<p></p>
+							<!-- hier muss eine Bean dazu, die in der Methode abfragt welches Länderkürzel und dem entsprechend dann die Anzahl der Items raussucht -->
+							<b:selectOneMenu value="#">
+								<f:selectItem itemValue="0"
+									itemLabel="Bitte auswählen- Deutschland" />
+								<f:selectItem itemValue="1" itemLabel="Baden-Württemberg" />
+								<f:selectItem itemValue="2" itemLabel="Bayern" />
+								<f:selectItem itemValue="3" itemLabel="Berlin" />
+								<f:selectItem itemValue="4" itemLabel="Brandenburg" />
+								<f:selectItem itemValue="5" itemLabel="Bremen" />
+								<f:selectItem itemValue="6" itemLabel="Hamburg" />
+								<f:selectItem itemValue="7" itemLabel="Hessen" />
+								<f:selectItem itemValue="8" itemLabel="Mecklenburg-Vorpommern" />
+								<f:selectItem itemValue="9" itemLabel="Niedersachsen" />
+								<f:selectItem itemValue="10" itemLabel="Nordrhein-Westfalen" />
+								<f:selectItem itemValue="16" itemLabel="Rheinland-Pfalz" />
+								<f:selectItem itemValue="11" itemLabel="Saarland" />
+								<f:selectItem itemValue="12" itemLabel="Sachsen" />
+								<f:selectItem itemValue="13" itemLabel="Sachsen-Anhalt" />
+								<f:selectItem itemValue="14" itemLabel="Schleswig-Holstein" />
+								<f:selectItem itemValue="15" itemLabel="Thüringen" />
+							</b:selectOneMenu>
+							<br></br>
+						ODER
+						
+							<b:selectOneMenu value="#">
+								<f:selectItem itemValue="0" itemLabel="Bitte auswählen- Schweiz" />
+								<f:selectItem itemValue="1" itemLabel="Zürich" />
+								<f:selectItem itemValue="2" itemLabel="Bern" />
+								<f:selectItem itemValue="3" itemLabel="Luzern" />
+								<f:selectItem itemValue="4" itemLabel="Uri" />
+								<f:selectItem itemValue="5" itemLabel="Schwyz" />
+								<f:selectItem itemValue="6" itemLabel="Obwalden" />
+								<f:selectItem itemValue="7" itemLabel="Nidwalden" />
+								<f:selectItem itemValue="8" itemLabel="Glarus" />
+								<f:selectItem itemValue="9" itemLabel="Zug" />
+								<f:selectItem itemValue="10" itemLabel="Freiburg" />
+								<f:selectItem itemValue="16" itemLabel="Solothurn" />
+								<f:selectItem itemValue="11" itemLabel="Basel-Stadt" />
+								<f:selectItem itemValue="12" itemLabel="Basel-Landschaft" />
+								<f:selectItem itemValue="13" itemLabel="Schaffhausen" />
+								<f:selectItem itemValue="14" itemLabel="Appenzell-Ausserrrhoden" />
+								<f:selectItem itemValue="15" itemLabel="Appenzell-Innerrhoden" />
+								<f:selectItem itemValue="16" itemLabel="St. Gallen" />
+								<f:selectItem itemValue="17" itemLabel="Graubünden" />
+								<f:selectItem itemValue="18" itemLabel="Aargau" />
+								<f:selectItem itemValue="19" itemLabel="Thurgau" />
+								<f:selectItem itemValue="20" itemLabel="Tessin" />
+								<f:selectItem itemValue="21" itemLabel="Waadt" />
+								<f:selectItem itemValue="22" itemLabel="Walis" />
+								<f:selectItem itemValue="23" itemLabel="Neuenburg" />
+								<f:selectItem itemValue="24" itemLabel="Genf" />
+								<f:selectItem itemValue="25" itemLabel="Jura" />
+							</b:selectOneMenu>
+							<br></br>	
+						ODER
+					
+							<b:selectOneMenu value="#">
+								<f:selectItem itemValue="0"
+									itemLabel="Bitte auswählen- Österreich" />
+								<f:selectItem itemValue="1" itemLabel="Burgenland" />
+								<f:selectItem itemValue="2" itemLabel="Kärnten" />
+								<f:selectItem itemValue="3" itemLabel="Niederösterreich" />
+								<f:selectItem itemValue="4" itemLabel="Oberösterreich" />
+								<f:selectItem itemValue="5" itemLabel="Salzburg" />
+								<f:selectItem itemValue="6" itemLabel="Steiermark" />
+								<f:selectItem itemValue="7" itemLabel="Tirol" />
+								<f:selectItem itemValue="8" itemLabel="Vorarlberg" />
+								<f:selectItem itemValue="9" itemLabel="Wien" />
+							</b:selectOneMenu>
+							<br></br>
+							ODER
+					
+							<b:selectOneMenu value="#">
+								<f:selectItem itemValue="0"
+									itemLabel="Bitte auswählen- Frankreich" />
+								<f:selectItem itemValue="1" itemLabel="Aquitanien" />
+								<f:selectItem itemValue="2" itemLabel="Auvergne" />
+								<f:selectItem itemValue="3" itemLabel="Basse-Normandie" />
+								<f:selectItem itemValue="4" itemLabel="Bretagne" />
+								<f:selectItem itemValue="5" itemLabel="Burgund" />
+								<f:selectItem itemValue="6" itemLabel="Centre-Val de Loire" />
+								<f:selectItem itemValue="7" itemLabel="Champagne-Ardenne" />
+								<f:selectItem itemValue="8" itemLabel="Elsass" />
+								<f:selectItem itemValue="9" itemLabel="Franche-Comté" />
+								<f:selectItem itemValue="10" itemLabel="Haute-Normandie" />
+								<f:selectItem itemValue="11" itemLabel="Ile-de-France" />
+								<f:selectItem itemValue="12" itemLabel="Korsika" />
+								<f:selectItem itemValue="13" itemLabel="Languedoc-Roussillon" />
+								<f:selectItem itemValue="14" itemLabel="Limousin" />
+								<f:selectItem itemValue="15" itemLabel="Lothringen" />
+								<f:selectItem itemValue="16" itemLabel="Midi-Pyrénées" />
+								<f:selectItem itemValue="17" itemLabel="Nor-Pas-de-Calais" />
+								<f:selectItem itemValue="18" itemLabel="Pay de la Loire" />
+								<f:selectItem itemValue="19" itemLabel="Picardie" />
+								<f:selectItem itemValue="19" itemLabel="Poitou-Charentes" />
+								<f:selectItem itemValue="20"
+									itemLabel="Provence-Alpes-Cote d'Azur" />
+								<f:selectItem itemValue="21" itemLabel="Rhone-Alpes" />
+							</b:selectOneMenu>
+
+						</b:panel>
+
+						<b:panel collapsible="false">
+
+							<f:facet name="heading">3. Verbund auswählen</f:facet>
+							<p></p>
+							<b:selectOneMenu value="#">
+								<f:selectItem itemValue="0" itemLabel="Bitte auswählen"
+									selected="true" />
+								<f:selectItem itemValue="1" itemLabel="Verbund nicht vorhanden"
+									selected="true" />
+								<!-- wenn itemValue="1" dann öffne neue Seite zum neuen Verbund anlegen und aktualisiere die Datenbank gleich danach bzw. übernehme den
+								angelegten Verbund in die Liste -->
+								<!-- wenn das abgeschickt wurde generiert sich aus den Verbünden und dem Bundesland die Hochschulregionsnummer  -->
+
+
+							</b:selectOneMenu>
+							<h:outputText
+								value="hier wird die Hochschulregionsnummer angezeigt" />
+						</b:panel>
+
+
+						<b:panel collapsible="false">
+
+							<f:facet name="heading">4. Institutionsname eintragen</f:facet>
+							<p></p>
+							<b:inputText id="institutionname" value="#" required="true"></b:inputText>
+
+						</b:panel>
+
+						<b:panel collapsible="false">
+							<f:facet name="heading">5. Hochschulnummer eintragen</f:facet>
+							<p></p>
+							<b:inputText id="institutionname" value="#" required="true"></b:inputText>
+						</b:panel>
+
+						<b:panel collapsible="false">
+							<f:facet name="heading">6. freie Systemnummer bestimmen</f:facet>
+							<p>
+								nächste freie Nummer gesamt:
+								<h:outputText value="#">
+									<!-- suche nächste Freie Nummer -->
+									<!-- einzelne Nummer -->
+								</h:outputText>
+							</p>
+							<br></br>
+							<b:button value="Diese Nummer verwenden" type="submit"
+								outcome="#"></b:button>
+						</b:panel>
+
+
+						<b:panel collapsible="false">
+							<f:facet name="heading">7. Kartentechnologie</f:facet>
+
+							<b:selectBooleanCheckbox value="#" caption="Desfire" />
+							<!-- hol Daten aus DB von CardTechnology -->
+							<b:selectBooleanCheckbox value="#" caption="Classic" />
+							<!-- hol Daten aus DB von CardTechnology -->
+							<b:selectBooleanCheckbox value="#" caption="Legic" />
+							<!-- hol Daten aus DB von CardTechnology -->
+
+						</b:panel>
+
+						<b:panel collapsible="false">
+							<f:facet name="heading">8. Aufbautyp</f:facet>
+
+							<b:selectBooleanCheckbox value="#" caption="standard" />
+							<!-- hol Daten aus DB von CardTechnology -->
+							<b:selectBooleanCheckbox value="#" caption="MAD" />
+							<!-- hol Daten aus DB von CardTechnology -->
+							<b:selectBooleanCheckbox value="#" caption="Card3" />
+							<!-- hol Daten aus DB von CardTechnology -->
+
+						</b:panel>
+
+
+		
+				</b:column>
+				<b:column span="2"></b:column>
+			</b:row>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
