@@ -15,6 +15,7 @@ public class KundeDao extends AbstractDao<Kunde> implements IKundeDao {
 		return Kunde.class;
 	}
 
+	/** find all Clients by Name */
 	@Override
 	public Kunde findbyName(String tName) throws DataException {
 
@@ -25,6 +26,10 @@ public class KundeDao extends AbstractDao<Kunde> implements IKundeDao {
 		return (Kunde) q.getSingleResult();
 	}
 
+	/**
+	 * Kunde joinen with KartenTechnologien, find Kunde with its
+	 * Cardtechnologies
+	 */
 	@Override
 	public Kunde findWithBags(Long id) throws DataException {
 
@@ -35,7 +40,7 @@ public class KundeDao extends AbstractDao<Kunde> implements IKundeDao {
 		return (Kunde) q.getSingleResult();
 	}
 
-	/** if there is a warning don#t show it */
+	/** if there is a warning don't show it */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Kunde> findAllWithBags() throws DataException {
