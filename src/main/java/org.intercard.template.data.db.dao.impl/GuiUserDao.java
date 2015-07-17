@@ -28,7 +28,7 @@ public class GuiUserDao extends AbstractDao<GuiUser> implements IGuiUserDao {
 
 	/** Find GuiUser by ID */
 	@Override
-	public GuiUser findByID(Long id) throws DataException {
+	public GuiUser findByID(int id) throws DataException {
 		Query q = entityManager.createNamedQuery("findGUserByID");
 		q.setParameter("id", id);
 
