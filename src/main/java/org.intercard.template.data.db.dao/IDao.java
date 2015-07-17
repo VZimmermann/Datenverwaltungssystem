@@ -9,7 +9,7 @@ public interface IDao<T> {
 	// -------------------------------------------------------------------------
 	// create, save, update, delete by Object
 	// -------------------------------------------------------------------------
-	public T findOne(Long id) throws DataException;
+	public T findOne(int id) throws DataException;
 
 	public List<T> findAll() throws DataException;
 
