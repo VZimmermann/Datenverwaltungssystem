@@ -31,7 +31,7 @@ public class KundeDao extends AbstractDao<Kunde> implements IKundeDao {
 	 * Cardtechnologies
 	 */
 	@Override
-	public Kunde findWithBags(Long id) throws DataException {
+	public Kunde findWithBags(int id) throws DataException {
 
 		Query q = entityManager.createNamedQuery("findKundeWithBags");
 		q.setParameter("id", id);
@@ -52,20 +52,22 @@ public class KundeDao extends AbstractDao<Kunde> implements IKundeDao {
 	}
 
 	/** Find a client and his Seriennummern */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Kunde> findWithSeriennummern() throws DataException {
-		Query q = entityManager.createNamedQuery("findKundeWithSeriennummer");
 
-		return (List<Kunde>) q.getResultList();
+	@Override
+	public Kunde findWithSeriennummern(int id) throws DataException {
+		Query q = entityManager.createNamedQuery("findKundeWithSeriennummer");
+		q.setParameter("id", id);
+		return (Kunde) q.getSingleResult();
 	}
 
 	/** Find a client and his Verbundschluessel */
-	@SuppressWarnings("unchecked")
+
 	@Override
-	public List<Kunde> findWithVerbundschluessel() throws DataException {
+	public Kunde findWithVerbundschluessel(int id) throws DataException {
 		Query q = entityManager
 				.createNamedQuery("findKundeWithVerbundschluessel");
-		return (List<Kunde>) q.getResultList();
+		q.setParameter("id", id);
+		return (Kunde) q.getSingleResult();
 	}
+
 }
