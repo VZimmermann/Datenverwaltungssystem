@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,8 +24,7 @@ import org.intercard.template.data.db.IEntity;
 @Table(name = "SerienNummer")
 @NamedQueries({
 		@NamedQuery(name = "findAllSeriennummern", query = "SELECT s FROM SerienNummer s"),
-		@NamedQuery(name = "findSeriennummerbySNAnfang", query = "SELECT s FROM SerienNummer s where s.snanfang = :snanfang"),
-		@NamedQuery(name = "findSeriennummerbyDate", query = "SELECT s FROM SerienNummer s where s.vergebenam = :date") })
+		@NamedQuery(name = "findSeriennummerbySNAnfang", query = "SELECT s FROM SerienNummer s where s.snanfang = :snanfang"), })
 public class SerienNummer implements IEntity {
 
 	@Transient
@@ -32,10 +32,10 @@ public class SerienNummer implements IEntity {
 
 	@Id
 	@Column(name = "SNAnfang")
-	private Long snanfang;
+	private int snanfang;
 
 	@Column(name = "SNEnde", unique = true)
-	private Long snende;
+	private int snende;
 
 	@Column(name = "Kommentar", nullable = true)
 	private String kommentar;
@@ -44,9 +44,10 @@ public class SerienNummer implements IEntity {
 	private Date vergebenam;
 
 	@Column(name = "Anzahl", nullable = true)
-	private Long anzahl;
+	private int anzahl;
 
 	@ManyToOne
+	@JoinColumn
 	private Kunde kunde;
 
 	// +++++++++++++++++++++++++++++++++++++
@@ -59,19 +60,19 @@ public class SerienNummer implements IEntity {
 	// ++++++++++++++++++++++++++++++++++++
 
 	@Override
-	public Long getId() {
+	public int getId() {
 		return snanfang;
 	}
 
-	public Long getSnanfang() {
+	public int getSnanfang() {
 		return snanfang;
 	}
 
-	public Long getSnende() {
+	public int getSnende() {
 		return snende;
 	}
 
-	public void setSnende(Long snende) {
+	public void setSnende(int snende) {
 		this.snende = snende;
 	}
 
@@ -83,7 +84,7 @@ public class SerienNummer implements IEntity {
 		this.kommentar = kommentar;
 	}
 
-	public void setSnanfang(Long snanfang) {
+	public void setSnanfang(int snanfang) {
 		this.snanfang = snanfang;
 	}
 
@@ -95,16 +96,20 @@ public class SerienNummer implements IEntity {
 		this.vergebenam = vergebenam;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public Long getAnzahl() {
+	public int getAnzahl() {
 		return anzahl;
 	}
 
-	public void setAnzahl(Long anzahl) {
+	public void setAnzahl(int anzahl) {
 		this.anzahl = anzahl;
+	}
+
+	public Kunde getKunde() {
+		return kunde;
+	}
+
+	public void setKunde(Kunde kunde) {
+		this.kunde = kunde;
 	}
 
 	@Override
