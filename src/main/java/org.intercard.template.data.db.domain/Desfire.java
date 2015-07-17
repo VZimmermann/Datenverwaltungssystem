@@ -18,8 +18,13 @@ import org.intercard.template.data.db.IEntity;
 @Table(name = "Desfire")
 @NamedQueries({
 		@NamedQuery(name = "findAllDesfire", query = "SELECT d FROM Desfire d"),
-		@NamedQuery(name = "findActivDesfire", query = "SELECT d FROM Desfire d where d.activ = :activ"),
-		@NamedQuery(name = "findDesfirebyID", query = "SELECT d FROM Desfire d where d.systemnummergesamt = :systemnummergesamt") })
+
+		@NamedQuery(name = "findActivDesfire", query = "SELECT d FROM Desfire d where d.aktiv = :activ")
+/*
+ * @NamedQuery(name = "findDesfirebySystemnummer", query =
+ * "SELECT d FROM Desfire d where d.N1V = :n1v and d.N1A= :n1a and d.N2= :n2 and d.N3 = :n3"
+ * )
+ */})
 public class Desfire extends KartenTechnologien implements IEntity {
 
 	/**
@@ -46,7 +51,7 @@ public class Desfire extends KartenTechnologien implements IEntity {
 	@Column(name = "Minorversion", nullable = true)
 	private String minorversion;
 
-	String systemnummergesamt = N1V + "/" + N1A + "/" + N2 + "/" + N3;
+	// String systemnummergesamt = N1V + "/" + N1A + "." + N2 + "." + N3;
 
 	// ++++++++++++++++++++++++++++++++++++
 	public Desfire() {
@@ -60,7 +65,11 @@ public class Desfire extends KartenTechnologien implements IEntity {
 	@Override
 	public String toString() {
 		return "Desfire[" + super.toString() + ", Systemnummer=" + N1V + "/"
-				+ N1A + "/" + N2 + "/" + N3 + "]";
+				+ N1A + "." + N2 + "." + N3 + "]";
+	}
+
+	public String toStringZusammengesetzt() {
+		return N1V + "/" + N1A + "." + N2 + "." + N3;
 	}
 
 	public Integer getN1V() {
