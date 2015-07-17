@@ -15,22 +15,23 @@ public class DesfireDao extends AbstractDao<Desfire> implements IDesfireDao {
 		return Desfire.class;
 	}
 
-	/** Find Desfire by N1V/N1A/N2/N3 connected to String */
-	@Override
-	public Desfire findDesfirebyID(String id) throws DataException {
-
-		Query q = entityManager.createNamedQuery("findDesfirebyID");
-		q.setParameter("name", id);
-
-		// GENAU einer erwartet.
-		return (Desfire) q.getSingleResult();
-	}
+	// /** Find Desfire by N1V/N1A/N2/N3 connected to String */
+	// @Override
+	// public Desfire findDesfirebyID(String id) throws DataException {
+	//
+	// Query q = entityManager.createNamedQuery("findDesfirebyID");
+	// q.setParameter("name", id);
+	//
+	// // GENAU einer erwartet.
+	// return (Desfire) q.getSingleResult();
+	// }
 
 	/** Find all active Desfire Cardtechnologies */
+
 	@Override
-	public Desfire findActivDesfire(boolean activ) throws DataException {
+	public Desfire findActivDesfire(boolean aktiv) throws DataException {
 		Query q = entityManager.createNamedQuery("findActivDesfire");
-		q.setParameter("activ", activ);
+		q.setParameter("activ", aktiv);
 		return (Desfire) q.getSingleResult();
 	}
 
