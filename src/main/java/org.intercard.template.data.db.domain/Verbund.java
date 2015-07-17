@@ -36,7 +36,7 @@ public class Verbund implements IEntity {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	private Long id;
+	private int id;
 
 	@Column(name = "Verbundname", unique = true)
 	private String verbundname;
@@ -57,7 +57,7 @@ public class Verbund implements IEntity {
 	// ++++++++++++++++++++++++++++++++++++
 
 	@Override
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
