@@ -16,6 +16,6 @@
 	<bean id="org.intercard.template.data.db.dao.ILegicDao" class="org.intercard.template.data.db.dao.impl.LegicDao"></bean>
 	<bean id="org.intercard.template.data.db.dao.ISerienNummerDao" class="org.intercard.template.data.db.dao.impl.SerienNummerDao"></bean>
 	<bean id="org.intercard.template.data.db.dao.IVerbundDao" class="org.intercard.template.data.db.dao.impl.VerbundDao"></bean>
-	
+	<bean id="org.intercard.template.data.db.dao.IVerbundschluesselDao" class="org.intercard.template.data.db.dao.impl.VerbundschluesselDao"></bean>
 	
 </beans>
