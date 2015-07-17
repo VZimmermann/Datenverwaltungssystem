@@ -1,0 +1,47 @@
+package org.intercard.template.service;
+
+import java.util.List;
+
+import org.intercard.template.data.db.domain.Kunde;
+
+public interface IKundeService {
+
+	// neuen Kunde anlegen
+	public boolean createCustomer(Kunde kunde);
+
+	// Kundendaten löschen
+	public boolean deleteCustomer(Kunde kunde);
+
+	// Kundendaten aktualisieren
+	public boolean updateCustomer(Kunde kunde);
+
+	// Kunde suchen
+	public List<Kunde> getKundeList();
+
+	public boolean seachKunde(Kunde kunde);
+
+	// verbundschlüssel zuweisen
+	public List<Kunde> getVerbundschluessel();
+
+	// Länderkürzel
+	public List<Kunde> getLaenderkuerzelList();
+
+	public Kunde getKunde(String kundenname);
+
+	public Kunde getKunde(int id);
+
+	public Kunde getSAPnr(String sapkundennr);
+
+	public Kunde getSAPstatus(String sapstatus);
+
+	public Kunde getHochschulregionnummer(String hochschulregionnummer);
+
+	public Kunde getHochschulnummer(String hochschulnummer);
+
+	public Kunde getFremdsystemnummer(String fremdsystemnummer);
+
+	public Kunde getkommentar(String kommentar);
+
+	public boolean setkommentar(String kommentar);
+
+}
