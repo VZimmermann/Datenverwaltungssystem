@@ -18,8 +18,13 @@ import org.intercard.template.data.db.IEntity;
 @Table(name = "Legic")
 @NamedQueries({
 		@NamedQuery(name = "findAllLegic", query = "SELECT l FROM Legic l"),
-		@NamedQuery(name = "findLegicbyID", query = "SELECT l FROM Legic l where l.systemnummergesamt = :systemnummergesamt"),
-		@NamedQuery(name = "findActivLegic", query = "SELECT l FROM Legic l where l.activ = :activ") })
+		/*
+		 * @NamedQuery(name = "findLegicbySystemnummer", query =
+		 * "SELECT l FROM Legic l where l.N1V = :n1v and l.N1A= :n1a and l.N2= :n2 and l.N3 = :n3"
+		 * ),
+		 */
+
+		@NamedQuery(name = "findActivLegic", query = "SELECT l FROM Legic l where l.aktiv = :activ") })
 public class Legic extends KartenTechnologien implements IEntity {
 
 	/**
@@ -40,7 +45,7 @@ public class Legic extends KartenTechnologien implements IEntity {
 	@Column(name = "N3", nullable = true)
 	private Integer N3;
 
-	String systemnummergesamt = N1V + "/" + N1A + "/" + N2 + "/" + N3;
+	// String systemnummergesamt = N1V + "/" + N1A + "." + N2 + "." + N3;
 
 	// ++++++++++++++++++++++++++++++++++++
 	public Legic() {
@@ -54,7 +59,11 @@ public class Legic extends KartenTechnologien implements IEntity {
 	@Override
 	public String toString() {
 		return "Legic[" + super.toString() + ", Systemnummer=" + N1V + "/"
-				+ N1A + "/" + N2 + "/" + N3 + "]";
+				+ N1A + "." + N2 + "." + N3 + "]";
+	}
+
+	public String toStringZusammengesetzt() {
+		return N1V + "/" + N1A + "." + N2 + "." + N3;
 	}
 
 	public Integer getN1V() {
