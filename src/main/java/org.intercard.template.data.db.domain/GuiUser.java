@@ -34,7 +34,7 @@ public class GuiUser implements IEntity {
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private int id;
 
 	@Column(name = "GUIUSERname", unique = true)
 	private String username;
@@ -55,7 +55,7 @@ public class GuiUser implements IEntity {
 	// ++++++++++++++++++++++++++++++++++++
 
 	@Override
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
