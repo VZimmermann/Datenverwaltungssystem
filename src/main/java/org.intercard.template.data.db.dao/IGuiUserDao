@@ -11,7 +11,7 @@ public interface IGuiUserDao extends IDao<GuiUser> {
 	public GuiUser findByName(String tName) throws DataException;
 
 	/** Find GuiUser by ID */
-	public GuiUser findByID(Long id) throws DataException;
+	public GuiUser findByID(int id) throws DataException;
 
 	/** Find all existing GuiUser */
 	public List<GuiUser> findAllGuiUser() throws DataException;
