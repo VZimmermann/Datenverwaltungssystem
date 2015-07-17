@@ -35,7 +35,7 @@ public abstract class KartenTechnologien implements IEntity {
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.TABLE)
-	private Long id;
+	private int id;
 
 	@Column(name = "IsActiv")
 	private boolean aktiv;
@@ -56,7 +56,7 @@ public abstract class KartenTechnologien implements IEntity {
 	// Getter and Setter
 	// ++++++++++++++++++++++++++++++++++++
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
