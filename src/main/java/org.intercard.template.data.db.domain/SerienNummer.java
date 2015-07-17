@@ -100,8 +100,10 @@ public class SerienNummer implements IEntity {
 		return anzahl;
 	}
 
-	public void setAnzahl(int anzahl) {
-		this.anzahl = anzahl;
+	public void setAnzahl() {
+
+		anzahl = snende - snanfang;
+
 	}
 
 	public Kunde getKunde() {
