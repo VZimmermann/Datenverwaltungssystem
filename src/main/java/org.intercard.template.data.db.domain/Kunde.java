@@ -38,9 +38,11 @@ import org.intercard.template.data.db.domain.enums.Laenderkuerzel;
 		 */
 		@NamedQuery(name = "findKundeWithBags", query = "SELECT k FROM Kunde k join fetch k.kartenTechnologien t where k.id = :id "),
 
-		@NamedQuery(name = "findAllKundeWithBags", query = "SELECT k FROM Kunde k join fetch k.kartenTechnologien t   "),
-		@NamedQuery(name = "findKundsWithSeriennummer", query = "SELECT k FROM Kunde k join fetch k.serienNummern s where k.id=:id"),
-		@NamedQuery(name = "findKundeWithVerbundschluessel", query = "SELECT k FROM Kunde join fetch k.verbundschluessel v where k.id=:id") })
+		@NamedQuery(name = "findAllKundeWithBags", query = "SELECT k FROM Kunde k join fetch k.kartenTechnologien t"),
+		@NamedQuery(name = "findKundeWithSeriennummer", query = "SELECT k FROM Kunde k join fetch k.serienNummern s where k.id=:id"),
+		@NamedQuery(name = "findKunde", query = " SELECT k FROM Kunde k"),
+
+		@NamedQuery(name = "findKundeWithVerbundschluessel", query = "SELECT k FROM Kunde k join fetch k.verbundschluessel s where k.id = :id ") })
 public class Kunde implements IEntity {
 
 	/**
@@ -52,7 +54,7 @@ public class Kunde implements IEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Long id;
+	private int id;
 
 	@Column(name = "Name", unique = true)
 	private String kundenname;
@@ -82,11 +84,11 @@ public class Kunde implements IEntity {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kunde", fetch = FetchType.EAGER)
 	private List<KartenTechnologien> kartenTechnologien;
 
-	@OneToMany(mappedBy = "kunde", fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "kunde", fetch = FetchType.EAGER)
 	// , fetch= FetchType.EAGER -> Gefaehrlich !!!
 	private List<SerienNummer> serienNummern;
 
-	@OneToMany(mappedBy = "kunde", fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "kunde", fetch = FetchType.EAGER)
 	private List<Verbundschluessel> verbundschluessel;
 
 	@ManyToOne
@@ -101,6 +103,7 @@ public class Kunde implements IEntity {
 		isVerbundsmutter = false;
 		kartenTechnologien = new ArrayList<KartenTechnologien>();
 		serienNummern = new ArrayList<SerienNummer>();
+
 		verbundschluessel = new ArrayList<Verbundschluessel>();
 	}
 
@@ -115,7 +118,7 @@ public class Kunde implements IEntity {
 	@Override
 	public String toString() {
 		return "Kunde ["
-				+ (id != null ? "id=" + id + ", " : "")
+				+ ("id=" + id)
 				+ (kundenname != null ? "kundenname=" + kundenname + ", " : "")
 				+ (sapkundennr != null ? "sapkundennr=" + sapkundennr + ", "
 						: "")
@@ -210,8 +213,11 @@ public class Kunde implements IEntity {
 	}
 
 	public void setKartenTechnologien(
-			List<KartenTechnologien> kartenTechnologien) {
-		this.kartenTechnologien = kartenTechnologien;
+			List<KartenTechnologien> kartentechnologien) {
+		if (isVerbundsmutter == false) {
+			this.kartenTechnologien = kartentechnologien;
+		}
+
 	}
 
 	/**
@@ -254,14 +260,25 @@ public class Kunde implements IEntity {
 	}
 
 	public void setVerbundschluessel(List<Verbundschluessel> verbundschluessel) {
-		this.verbundschluessel = verbundschluessel;
+		if (isVerbundsmutter == false) {
+			this.verbundschluessel = verbundschluessel;
+		} else
+			verbundschluessel = null;
 	}
 
 	public void addVerbundschluessel(Verbundschluessel schluessel) {
-		if (verbundschluessel == null) {
-			verbundschluessel = new ArrayList<Verbundschluessel>();
-		}
-		verbundschluessel.add(schluessel);
+		/**
+		 * if a Kunde is not a Verbundsmutter then there are Verbundsschluessel
+		 * otherwise not
+		 */
+		if (isVerbundsmutter == false) {
+			if (verbundschluessel == null) {
+				verbundschluessel = new ArrayList<Verbundschluessel>();
+			}
+			verbundschluessel.add(schluessel);
+		} else
+			verbundschluessel = null;
+
 	}
 
 	public void setVerbund(Verbund verbund) {
@@ -269,14 +286,17 @@ public class Kunde implements IEntity {
 	}
 
 	public boolean isVerbundsmutter() {
+
 		return isVerbundsmutter;
 	}
 
 	public void setVerbundsmutter(boolean isVerbundsmutter) {
-		this.isVerbundsmutter = isVerbundsmutter;
+		if (isVerbundsmutter == false) {
+			this.isVerbundsmutter = isVerbundsmutter;
+		}
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
