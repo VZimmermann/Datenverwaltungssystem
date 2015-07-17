@@ -28,29 +28,34 @@
 		<property name="#"
 			ref="#" />
 	</bean>
+-->
 
 	<bean id="org.intercard.template.service.IKartenTechnologienService" class="org.intercard.template.service.impl.KartenTechnologienService">
-		<property name="#"
-			ref="#" />
+		<property name="kartentechnologienDao"
+			ref="org.intercard.template.data.db.dao.IKartenTechnologienDao" />
 	</bean>
 
 	<bean id="org.intercard.template.service.IKundeService" class="org.intercard.template.service.impl.KundeService">
-		<property name="#"
-			ref="#" />
+		<property name="kundeDao"
+			ref="org.intercard.template.data.db.dao.IKundeDao" />
 	</bean>
 
 	<bean id="org.intercard.template.service.ISeriennummerService" class="org.intercard.template.service.impl.SeriennummerService">
-		<property name="#"
-			ref="#" />
+		<property name="serienNummernDao"
+			ref="org.intercard.template.data.db.dao.ISerienNummerDao" />
 	</bean>
 	
 	<bean id="org.intercard.template.service.ISystemnummerService" class="org.intercard.template.service.impl.SystemnummerService">
-		<property name="#"
-			ref="#" />
+		<property name="classicDao"
+			ref="org.intercard.template.data.db.dao.IClassicDao" />
+			<property name="desfireDao"
+			ref="org.intercard.template.data.db.dao.IDesfireDao" />
+				<property name="legicDao"
+			ref="org.intercard.template.data.db.dao.ILegicDao" />
 	</bean>
 	
 	<bean id="org.intercard.template.service.IVerbundService" class="org.intercard.template.service.impl.VerbundService">
-		<property name="#"
-			ref="#" />
-	</bean> -->
+		<property name="verbundDao"
+			ref="org.intercard.template.data.db.dao.IVerbundDao" />
+	</bean> 
 </beans>
