@@ -25,7 +25,7 @@ public abstract class AbstractDao<T extends Serializable> implements IDao<T> {
 		this.entityManager = entityManager;
 	}
 
-	public T findOne(Long id) throws DataException {
+	public T findOne(int id) throws DataException {
 		try {
 			return this.entityManager.find(this.domainClass, id);
 		} catch (Exception e) {
