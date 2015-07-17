@@ -14,14 +14,14 @@ public interface IKundeDao extends IDao<Kunde> {
 	 * Kunde joinen with KartenTechnologien, find Kunde with its
 	 * Cardtechnologies
 	 */
-	public Kunde findWithBags(Long id) throws DataException;
+	public Kunde findWithBags(int id) throws DataException;
 
 	public List<Kunde> findAllWithBags() throws DataException;
 
 	/** Find a client and his Seriennummern */
-	public List<Kunde> findWithSeriennummern() throws DataException;
+	public Kunde findWithSeriennummern(int id) throws DataException;
 
 	/** Find a client and his Verbundschluessel */
-	public List<Kunde> findWithVerbundschluessel() throws DataException;
+	public Kunde findWithVerbundschluessel(int id) throws DataException;
 
 }
