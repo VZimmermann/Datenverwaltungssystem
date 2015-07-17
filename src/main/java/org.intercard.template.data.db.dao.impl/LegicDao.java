@@ -4,43 +4,37 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import org.intercard.template.data.db.dao.ILegicDao;
-import org.intercard.template.data.db.domain.Legic;
+import org.intercard.template.data.db.dao.ISerienNummerDao;
+import org.intercard.template.data.db.domain.SerienNummer;
 import org.intercard.template.data.db.ex.DataException;
 
-public class LegicDao extends AbstractDao<Legic> implements ILegicDao {
+public class SerienNummerDao extends AbstractDao<SerienNummer> implements
+		ISerienNummerDao {
 
 	@Override
-	protected Class<Legic> getDomainClass() {
-		return Legic.class;
+	protected Class<SerienNummer> getDomainClass() {
+		return SerienNummer.class;
 	}
 
-	//
-	// /** Find Legic by N1V/N1A/N2/N3 connected to String */
-	// @Override
-	// public Legic findLegicbyID(String id) throws DataException {
-	//
-	// Query q = entityManager.createNamedQuery("findLegicbyID");
-	// q.setParameter("systemnummergesamt", id);
-	//
-	// // GENAU einer erwartet.
-	// return (Legic) q.getSingleResult();
-	// }
-
-	/** Find all active Legic cardtechnologies */
-
-	@Override
-	public Legic findActivLegic(boolean aktiv) throws DataException {
-		Query q = entityManager.createNamedQuery("findActiveLegic");
-		q.setParameter("activ", aktiv);
-		return (Legic) q.getSingleResult();
-	}
-
-	/** Find all Legic cards */
+	/** Find all Seriennummern */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Legic> findAllLegic() throws DataException {
-		Query q = entityManager.createNamedQuery("findAllLegic");
-		return (List<Legic>) q.getResultList();
+	public List<SerienNummer> findAllSeriennummern() throws DataException {
+		Query q = entityManager.createNamedQuery("findAllSeriennummern");
+		return (List<SerienNummer>) q.getResultList();
 	}
+
+	/**
+	 * Find Seriennummernbereiche (Ranges)-->Wenn man die erste Nummer hat wird
+	 * die Anzahl angezeigt
+	 */
+	@Override
+	public SerienNummer findSeriennummeranfang(int snanfang)
+			throws DataException {
+		Query q = entityManager.createNamedQuery("findSeriennummerbySNAnfang");
+		q.setParameter("snanfang", snanfang);
+
+		return (SerienNummer) q.getSingleResult();
+	}
+
 }
