@@ -28,18 +28,9 @@ public interface IKartenTechnologienService {
 	// Legicinformationen anlegen, aktualisieren, löschen
 	public boolean createLegic(Legic legic);
 
-	public boolean updateClassic(Legic legic);
+	public boolean updateLegic(Legic legic);
 
-	public boolean deleteClassic(Legic legic);
-
-	// neue Kartentechnologie anlegen, aktualisieren, löschen
-	public boolean createKartentechnologie(KartenTechnologien kartentechnologie);
-
-	public boolean updateKartentechnologie(KartenTechnologien kartentechnologie);
-
-	public boolean deleteKartentechnologie(KartenTechnologien kartentechnologie);
-
-	public KartenTechnologien getKartentechnologien(String name);
+	public boolean deleteLegic(Legic legic);
 
 	public List<KartenTechnologien> getKartentechnologienList();
 
@@ -49,11 +40,12 @@ public interface IKartenTechnologienService {
 
 	// Kartenlayout auslesen und anzeigen
 
-	public List<Aufbautype> getAufbautypeList();
+	public List<Aufbautype> getAufbautypeList();// nur bei Classic
 
 	public boolean getAufbaustruktur(Desfire aufbaustruktur);
 
 	public boolean getMinorversion(Desfire minorversion);
 
 	public boolean getAufbautype(Classic aufbautype);
+
 }
