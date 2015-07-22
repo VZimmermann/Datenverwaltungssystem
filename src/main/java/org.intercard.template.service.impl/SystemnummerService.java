@@ -20,20 +20,14 @@ public class SystemnummerService implements ISystemnummerService {
 	private ILegicDao legicDao;
 
 	@Override
-	public String constructSeriennummer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean searchSystemnummer(Classic systemnummer) {
-		// TODO Auto-generated method stub
+		// Liste wieder geben
 		return false;
 	}
 
 	@Override
 	public boolean searchSystemnummer(Legic systemnummer) {
-		// TODO Auto-generated method stub
+		// Liste wiedergeben
 		return false;
 	}
 
