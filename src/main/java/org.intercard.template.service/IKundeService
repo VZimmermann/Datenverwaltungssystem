@@ -15,13 +15,8 @@ public interface IKundeService {
 	// Kundendaten aktualisieren
 	public boolean updateCustomer(Kunde kunde);
 
-	// Kunde suchen
+	// alle Kunde suchen
 	public List<Kunde> getKundeList();
-
-	public boolean seachKunde(Kunde kunde);
-
-	// verbundschlüssel zuweisen
-	public List<Kunde> getVerbundschluessel();
 
 	// Länderkürzel
 	public List<Kunde> getLaenderkuerzelList();
@@ -43,5 +38,11 @@ public interface IKundeService {
 	public Kunde getkommentar(String kommentar);
 
 	public boolean setkommentar(String kommentar);
+
+	public List<Kunde> getKundeWithVerbundschluessel();
+
+	public List<Kunde> getKundeWithKartentechnologien();
+
+	public List<Kunde> getKundeWithSeriennummern();
 
 }
