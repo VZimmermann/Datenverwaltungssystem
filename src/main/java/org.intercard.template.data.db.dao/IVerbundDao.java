@@ -14,6 +14,6 @@ public interface IVerbundDao extends IDao<Verbund> {
 	public Verbund findVerbund(String name) throws DataException;
 
 	/** Find a Verbund with its Teilnehmer */
-	public Verbund findVerbundWithTeilnehmer(String tName) throws DataException;
+//	public Verbund findVerbundWithTeilnehmer(String tName) throws DataException;
 
 }
