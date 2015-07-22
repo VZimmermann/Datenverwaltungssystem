@@ -8,13 +8,13 @@ import org.intercard.template.data.db.domain.SerienNummer;
 public interface ISeriennummerService {
 
 	// nächste freie Seriennummer berechen
-	public int nextfreeSerienNummer(SerienNummer seriennummer);
+	public Long nextfreeSerienNummer(SerienNummer seriennummer);
 
 	// letzte vergebene Seriennummer berechnen
-	public int lastSerienNummer(SerienNummer seriennummer);
+	public Long lastSerienNummer(SerienNummer seriennummer);
 
 	// Sereinnummernrange vergeben-->anzahl
-	public int defineSeriennummernrange(SerienNummer anzahl);
+	public Long defineSeriennummernrange(SerienNummer anzahl);
 
 	// Seriennummernrange reservieren
 	public boolean reserveSeriennummernrange(SerienNummer seriennummer);
