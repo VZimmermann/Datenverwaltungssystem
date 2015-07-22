@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.intercard.template.data.db.dao.IKundeDao;
 import org.intercard.template.data.db.domain.Kunde;
+import org.intercard.template.data.db.ex.DataException;
 import org.intercard.template.service.IKundeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,19 +24,43 @@ public class KundeService implements IKundeService {
 
 	@Override
 	public boolean createCustomer(Kunde kunde) {
-		// TODO Auto-generated method stub
+		if (kunde != null) {
+			try {
+				kundeDao.doSave(kunde);
+				logger.debug(" Service Create Kunde");
+				return true;
+			} catch (DataException e) {
+				logger.debug("EX", e);
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public boolean deleteCustomer(Kunde kunde) {
-		// TODO Auto-generated method stub
+		if (kunde != null && kunde.getId() != 0) {
+			try {
+				kundeDao.doDelete(kunde);
+				logger.debug(" Service Delete Kunde");
+				return true;
+			} catch (DataException e) {
+				logger.debug("EX", e);
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public boolean updateCustomer(Kunde kunde) {
-		// TODO Auto-generated method stub
+		if (kunde != null && kunde.getId() != 0) {
+			try {
+				kundeDao.doUpdate(kunde);
+				logger.debug(" Service Update Kunde");
+				return true;
+			} catch (DataException e) {
+				logger.debug("EX", e);
+			}
+		}
 		return false;
 	}
 
@@ -100,15 +125,9 @@ public class KundeService implements IKundeService {
 	}
 
 	@Override
-	public List<Kunde> getVerbundschluessel() {
+	public List<Kunde> getKundeWithVerbundschluessel() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public boolean seachKunde(Kunde kunde) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	/*
@@ -116,6 +135,18 @@ public class KundeService implements IKundeService {
 	 */
 	public void setKundeDao(IKundeDao kundeDao) {
 		this.kundeDao = kundeDao;
+	}
+
+	@Override
+	public List<Kunde> getKundeWithKartentechnologien() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Kunde> getKundeWithSeriennummern() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
