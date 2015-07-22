@@ -1,45 +1,77 @@
-package org.intercard.template.data.db.dao.impl;
+package org.intercard.template.data.db.domain;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import javax.persistence.Query;
+import org.intercard.template.data.db.IEntity;
 
-import org.intercard.template.data.db.dao.IGuiUserDao;
-import org.intercard.template.data.db.domain.GuiUser;
-import org.intercard.template.data.db.ex.DataException;
+@Entity
+@Table(name = "GUIUSER")
+@NamedQueries({
+		@NamedQuery(name = "findGUserByName", query = "SELECT g FROM GuiUser g WHERE g.username = :name"),
+		@NamedQuery(name = "findGUserByID", query = "SELECT g FROM GuiUser g where g.id = :id"),
+		@NamedQuery(name = "findAllGUser", query = "SELECT g FROM GuiUser g") })
+public class GuiUser implements IEntity {
 
-public class GuiUserDao extends AbstractDao<GuiUser> implements IGuiUserDao {
+	/**
+	 * 
+	 */
+	@Transient
+	private static final long serialVersionUID = -2724976971298747446L;
 
-	@Override
-	protected Class<GuiUser> getDomainClass() {
-		return GuiUser.class;
+	@Id
+	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+
+	@Column(name = "GUIUSERname", unique = true)
+	private String username;
+
+	@Column(name = "GUIUSERpassword")
+	private String password;
+
+	// ++++++++++++++++++++++++++++++++++++
+	public GuiUser() {
+
 	}
 
-	/** Find GuiUser by Name */
+	// ++++++++++++++++++++++++++++++++++++
+	// Getter and Setter
+	// ++++++++++++++++++++++++++++++++++++
+
 	@Override
-	public GuiUser findByName(String tName) throws DataException {
-
-		Query q = entityManager.createNamedQuery("findGUserByName");
-		q.setParameter("name", tName);
-
-		// GENAU einer erwartet.
-		return (GuiUser) q.getSingleResult();
+	public int getId() {
+		return id;
 	}
 
-	/** Find GuiUser by ID */
-	@Override
-	public GuiUser findByID(int id) throws DataException {
-		Query q = entityManager.createNamedQuery("findGUserByID");
-		q.setParameter("id", id);
-
-		return (GuiUser) q.getSingleResult();
+	public String getUsername() {
+		return username;
 	}
 
-	/** Find all existing GuiUser */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<GuiUser> findAllGuiUser() throws DataException {
-		Query q = entityManager.createNamedQuery("findAllGUser");
-		return (List<GuiUser>) q.getResultList();
+	public void setUsername(String name) {
+		this.username = name;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "GuiUser [id=" + id + ", "
+				+ (username != null ? "username=" + username + ", " : "")
+				+ (password != null ? "password=" + password : "") + "]";
+	}
+
 }
