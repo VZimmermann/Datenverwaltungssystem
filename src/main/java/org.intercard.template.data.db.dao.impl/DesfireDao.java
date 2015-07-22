@@ -1,45 +1,132 @@
-package org.intercard.template.data.db.dao.impl;
+package org.intercard.template.data.db.domain;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import javax.persistence.Query;
+import org.intercard.template.data.db.IEntity;
 
-import org.intercard.template.data.db.dao.IDesfireDao;
-import org.intercard.template.data.db.domain.Desfire;
-import org.intercard.template.data.db.ex.DataException;
+/**
+ * 
+ * @author vanessa zimmermann
+ *
+ */
+@Entity
+@Table(name = "Desfire")
+@NamedQueries({
+		@NamedQuery(name = "findAllDesfire", query = "SELECT d FROM Desfire d"),
 
-public class DesfireDao extends AbstractDao<Desfire> implements IDesfireDao {
+		@NamedQuery(name = "findActivDesfire", query = "SELECT d FROM Desfire d where d.aktiv = :activ")
+/*
+ * @NamedQuery(name = "findDesfirebySystemnummer", query =
+ * "SELECT d FROM Desfire d where d.N1V = :n1v and d.N1A= :n1a and d.N2= :n2 and d.N3 = :n3"
+ * )
+ */})
+public class Desfire extends KartenTechnologien implements IEntity {
 
-	@Override
-	protected Class<Desfire> getDomainClass() {
-		return Desfire.class;
+	/**
+	 * 
+	 */
+	@Transient
+	private static final long serialVersionUID = -5415176857446L;
+
+	@Column(name = "N1V", nullable = true)
+	private Integer N1V;
+
+	@Column(name = "N1A", nullable = true)
+	private Integer N1A;
+
+	@Column(name = "N2", nullable = true)
+	private Integer N2;
+
+	@Column(name = "N3", nullable = true)
+	private Integer N3;
+
+	@Column(name = "Aufbaustruktur", nullable = true)
+	private String aufbaustruktur;
+
+	@Column(name = "Minorversion", nullable = true)
+	private String minorversion;
+
+	@Column(name = "Kartentechnologie")
+	private String kartentechnologie = "Desfire";
+
+	@Column(name = "zusammengesetzt")
+	private String zusammengesetzt;
+
+	// ++++++++++++++++++++++++++++++++++++
+	public Desfire() {
+
 	}
 
-	// /** Find Desfire by N1V/N1A/N2/N3 connected to String */
-	// @Override
-	// public Desfire findDesfirebyID(String id) throws DataException {
-	//
-	// Query q = entityManager.createNamedQuery("findDesfirebyID");
-	// q.setParameter("name", id);
-	//
-	// // GENAU einer erwartet.
-	// return (Desfire) q.getSingleResult();
-	// }
-
-	/** Find all active Desfire Cardtechnologies */
+	// ++++++++++++++++++++++++++++++++++++
+	// Getter and Setter
+	// ++++++++++++++++++++++++++++++++++++
 
 	@Override
-	public Desfire findActivDesfire(boolean aktiv) throws DataException {
-		Query q = entityManager.createNamedQuery("findActivDesfire");
-		q.setParameter("activ", aktiv);
-		return (Desfire) q.getSingleResult();
+	public String toString() {
+		return "Desfire[" + super.toString() + ", Systemnummer=" + N1V + "/"
+				+ N1A + "." + N2 + "." + N3 + "]";
 	}
 
-	/** Find all Desfire Cardtechnologies */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Desfire> findAllDesfire() throws DataException {
-		Query q = entityManager.createNamedQuery("findAllDesfire");
-		return (List<Desfire>) q.getResultList();
+	public Integer getN1V() {
+		return N1V;
+	}
+
+	public void setN1V(Integer n1v) {
+		N1V = n1v;
+	}
+
+	public Integer getN1A() {
+		return N1A;
+	}
+
+	public void setN1A(Integer n1a) {
+		N1A = n1a;
+	}
+
+	public Integer getN2() {
+		return N2;
+	}
+
+	public void setN2(Integer n2) {
+		N2 = n2;
+	}
+
+	public Integer getN3() {
+		return N3;
+	}
+
+	public void setN3(Integer n3) {
+		N3 = n3;
+	}
+
+	public String getAufbaustruktur() {
+		return aufbaustruktur;
+	}
+
+	public void setAufbaustruktur(String aufbaustruktur) {
+		this.aufbaustruktur = aufbaustruktur;
+	}
+
+	public String getMinorversion() {
+		return minorversion;
+	}
+
+	public void setMinorversion(String minorversion) {
+		this.minorversion = minorversion;
+	}
+
+	public String getZusammengesetzt() {
+		return zusammengesetzt;
+	}
+
+	public void setZusammengesetzt() {
+
+		zusammengesetzt = N1V + "/" + N1A + "." + N2 + "." + N3;
+
 	}
 }
