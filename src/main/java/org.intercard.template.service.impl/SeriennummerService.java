@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.intercard.template.data.db.dao.ISerienNummerDao;
 import org.intercard.template.data.db.domain.SerienNummer;
+import org.intercard.template.data.db.ex.DataException;
 import org.intercard.template.service.ISeriennummerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,7 @@ public class SeriennummerService implements ISeriennummerService {
 	private static final Logger logger = LoggerFactory
 			.getLogger(SeriennummerService.class);
 
-	private ISerienNummerDao serienNummernDao;
+	private ISerienNummerDao seriennummerDao;
 
 	@Override
 	public Long nextfreeSerienNummer(SerienNummer seriennummer) {
@@ -29,7 +30,7 @@ public class SeriennummerService implements ISeriennummerService {
 	}
 
 	@Override
-	public Long defineSeriennummernrange(SerienNummer seriennummer) {
+	public Long defineSeriennummernrange(SerienNummer anzahl) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -48,7 +49,15 @@ public class SeriennummerService implements ISeriennummerService {
 
 	@Override
 	public boolean deleteSerienNummern(SerienNummer seriennummer) {
-		// TODO Auto-generated method stub
+		if (seriennummer != null && seriennummer.getSnanfang() != 0) {
+			try {
+				seriennummerDao.doDelete(seriennummer);
+				logger.debug(" Service Delete Seriennummer");
+				return true;
+			} catch (DataException e) {
+				logger.debug("EX", e);
+			}
+		}
 		return false;
 	}
 
@@ -76,11 +85,4 @@ public class SeriennummerService implements ISeriennummerService {
 		return null;
 	}
 
-	/*
-	 * SETTER FOR SPRING CONFIG
-	 */
-
-	public void setSerienNummernDao(ISerienNummerDao serienNummernDao) {
-		this.serienNummernDao = serienNummernDao;
-	}
 }
