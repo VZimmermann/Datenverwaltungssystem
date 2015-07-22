@@ -14,9 +14,6 @@ public interface ISystemnummerService {
 
 	public boolean searchSystemnummer(Desfire systemnummer);
 
-	// Systemnummer zusammensetzen aus den Objekten der Kartentechnologien
-	public String constructSeriennummer();
-
 	// nächste freie Systemnummer berechnen
 	public boolean nextfreeSystemnummer(Classic systemnummer);
 
