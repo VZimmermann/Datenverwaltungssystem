@@ -5,6 +5,7 @@ import java.util.List;
 import org.intercard.template.data.db.dao.IVerbundDao;
 import org.intercard.template.data.db.domain.Kunde;
 import org.intercard.template.data.db.domain.Verbund;
+import org.intercard.template.data.db.ex.DataException;
 import org.intercard.template.service.IVerbundService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,19 +25,43 @@ public class VerbundService implements IVerbundService {
 
 	@Override
 	public boolean createVerbund(Verbund verbund) {
-		// TODO Auto-generated method stub
+		if (verbund != null) {
+			try {
+				verbundDao.doSave(verbund);
+				logger.debug(" Service Create Verbund");
+				return true;
+			} catch (DataException e) {
+				logger.debug("EX", e);
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public boolean updateVerbund(Verbund verbund) {
-		// TODO Auto-generated method stub
+		if (verbund != null && verbund.getId() != 0) {
+			try {
+				verbundDao.doUpdate(verbund);
+				logger.debug(" Service Update Verbund");
+				return true;
+			} catch (DataException e) {
+				logger.debug("EX", e);
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public boolean deleteVerbund(Verbund verbund) {
-		// TODO Auto-generated method stub
+		if (verbund != null && verbund.getId() != 0) {
+			try {
+				verbundDao.doDelete(verbund);
+				logger.debug(" Service Delete Verbund");
+				return true;
+			} catch (DataException e) {
+				logger.debug("EX", e);
+			}
+		}
 		return false;
 	}
 
