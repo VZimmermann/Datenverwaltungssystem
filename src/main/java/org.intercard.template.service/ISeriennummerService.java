@@ -1,36 +1,23 @@
 package org.intercard.template.service;
 
-import java.util.Date;
 import java.util.List;
 
+import org.intercard.template.data.db.domain.Kunde;
 import org.intercard.template.data.db.domain.SerienNummer;
 
 public interface ISeriennummerService {
 
-	// nächste freie Seriennummer berechen
-	public Long nextfreeSerienNummer(SerienNummer seriennummer);
+	/** reserve a Range for a Kunde */
+	public SerienNummer reserveSeriennummernRange(Kunde kunde, int anzahl,
+			int snanfang);
 
-	// letzte vergebene Seriennummer berechnen
-	public Long lastSerienNummer(SerienNummer seriennummer);
+	/** get a List of Seriennummern */
+	public List<SerienNummer> getSeriennummernList();
 
-	// Sereinnummernrange vergeben-->anzahl
-	public Long defineSeriennummernrange(SerienNummer anzahl);
+	/** Delete a Range */
+	public boolean deleteSeriennummern(SerienNummer seriennummer);
 
-	// Seriennummernrange reservieren
-	public boolean reserveSeriennummernrange(SerienNummer seriennummer);
-
-	// Seriennummerbereich ausgeben
-	public List<SerienNummer> getSeriennummernrangeList();
-
-	// Seriennummernbereich als wieder frei kennzeichnen
-	public boolean deleteSerienNummern(SerienNummer seriennummer);
-
-	public SerienNummer getSerienNummeranfang(int snanfang);
-
-	public SerienNummer getSerienNummerende(int snende);
-
-	public SerienNummer getKommentar(String kommentar);
-
-	public SerienNummer getVergebenam(Date vergeben);
+	/** get a Seriennummer by its beginning */
+	public SerienNummer getSeriennummer(int snanfang);
 
 }
