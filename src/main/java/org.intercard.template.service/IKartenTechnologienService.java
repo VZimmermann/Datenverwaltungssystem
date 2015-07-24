@@ -6,46 +6,65 @@ import org.intercard.template.data.db.domain.Classic;
 import org.intercard.template.data.db.domain.Desfire;
 import org.intercard.template.data.db.domain.KartenTechnologien;
 import org.intercard.template.data.db.domain.Legic;
-import org.intercard.template.data.db.domain.enums.Aufbautype;
+import org.intercard.template.data.domain.SystemNummer;
 
 public interface IKartenTechnologienService {
 
-	// Desfireinformationen auslesen
-	public boolean createDesfire(Desfire desfire);
+	/**
+	 * public Classic nextfreeSystemnummerClassic(SystemNummer sysNum);
+	 * 
+	 * public Legic nextfreeSystemnummerLegic (SystemNummer sysNum);
+	 * 
+	 * public Desfire nextfreeSystemnummerDesfire (SystemNummer sysNum);
+	 */
 
-	public boolean updateDesfire(Desfire desfire);
+	/** Create, update, delete a Kartentechnologie with Type Desfire */
+	public Desfire createDesfire(Desfire desfire);
 
-	public boolean deleteDesfire(Desfire desfire);
+	public Desfire updateDesfire(Desfire desfire);
 
-	// Classicinformationen anlegen, aktualisieren, löschen
+	public Desfire deleteDesfire(Desfire desfire);
 
-	public boolean createClassic(Classic classic);
+	/** Create, update, delete a Kartentechnologie with Type Classic */
 
-	public boolean updateClassic(Classic classic);
+	public Classic createClassic(Classic classic);
 
-	public boolean deleteClassic(Classic classic);
+	public Classic updateClassic(Classic classic);
 
-	// Legicinformationen anlegen, aktualisieren, löschen
-	public boolean createLegic(Legic legic);
+	public Classic deleteClassic(Classic classic);
 
-	public boolean updateLegic(Legic legic);
+	/** Create, update, delete a Kartentechnologie with Type Legic */
+	public Legic createLegic(Legic legic);
 
-	public boolean deleteLegic(Legic legic);
+	public Legic updateLegic(Legic legic);
 
-	public List<KartenTechnologien> getKartentechnologienList();
+	public Legic deleteLegic(Legic legic);
+
+	/**
+	 * nach einer Systemnummer suchen und wenn es diese in mehreren
+	 * Kartentechnologien gibt ausgeben
+	 */
+	public List<KartenTechnologien> getKartentechnologienList(
+			SystemNummer systemnummer);
 
 	public KartenTechnologien getKartenTechnologien(int id);
 
-	// KArtentechnologie Kunde zuordnen
+	/** get only one Systemnummer */
 
-	// Kartenlayout auslesen und anzeigen
+	public Classic searchClassicSystemnummer(SystemNummer systemnummer);
 
-	public List<Aufbautype> getAufbautypeList();// nur bei Classic
+	public Legic searchLegicSystemnummer(SystemNummer systemnummer);
 
-	public boolean getAufbaustruktur(Desfire aufbaustruktur);
+	public Desfire searchDesfireSystemnummer(SystemNummer systemnummer);
 
-	public boolean getMinorversion(Desfire minorversion);
-
-	public boolean getAufbautype(Classic aufbautype);
+	/*
+	 * 
+	 * Pruefen ob benoetigt wird!!!!!! // Systemnummer einem Kunde zu ordnen
+	 * public boolean addSystemnummer(Classic systemnummer, Kunde kunde);
+	 * 
+	 * public boolean addSystemnummer(Legic systemnummer, Kunde kunde);
+	 * 
+	 * public boolean addSystemnummer(Desfire systemnummer, Kunde kunde);
+	 */
 
 }
