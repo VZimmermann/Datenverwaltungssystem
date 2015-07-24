@@ -2,36 +2,26 @@ package org.intercard.template.service;
 
 import java.util.List;
 
-import org.intercard.template.data.db.domain.Kunde;
 import org.intercard.template.data.db.domain.Verbund;
 
 public interface IVerbundService {
 
-	/**
-	 * Verbund suchen
-	 */
-	public List<Verbund> searchVerbund(String verbund);
+	/** get a List with all excisting Verbünde */
+	public List<Verbund> getVerbundList();
 
-	// Verbundteilnehmer und Systemnummer anzeigen/ einem Verbund zu ordnen
-	// ??kommt hier Kunde oder Verbund??
-	public List<Kunde> getVerbundsTeilnehmer(Verbund verbund);
+	/** get a Verbund by searching for a name */
+	public Verbund getVerbund(String name);
 
-	// Liste Verbundschlüssel auslesen
-	public List<Verbund> getVerbundschluesselList();
-
-	// Verbund erstellen
-	public boolean createVerbund(Verbund verbund);
-
-	// Verbunddaten aktualisieren
-	public boolean updateVerbund(Verbund verbund);
-
-	// Verbunddaten löschen
-	public boolean deleteVerbund(Verbund verbund);
-
+	/** get a Verbund by searching for an id */
 	public Verbund getVerbund(int id);
 
-	public Verbund getVerbund(String verbundname);
+	/** Create a new Verbund */
+	public Verbund createVerbund(Verbund verbund);
 
-	public List<Verbund> getVerbundList();
+	/** Update an excisting Verbund */
+	public Verbund updateVerbund(Verbund verbund);
+
+	/** Delete an excisting Verbund */
+	public Verbund deleteVerbund(Verbund verbund);
 
 }
