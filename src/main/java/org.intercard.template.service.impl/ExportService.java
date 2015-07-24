@@ -16,10 +16,6 @@ public class ExportService implements IExportService {
 		return null;
 	}
 
-	@Override
-	public boolean getSAPnr(Kunde sapnummer) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 
 }
