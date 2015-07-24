@@ -6,43 +6,38 @@ import org.intercard.template.data.db.domain.Kunde;
 
 public interface IKundeService {
 
-	// neuen Kunde anlegen
-	public boolean createCustomer(Kunde kunde);
+	/** Create a new Kunde */
+	public Kunde createKunde(Kunde kunde);
 
-	// Kundendaten löschen
-	public boolean deleteCustomer(Kunde kunde);
+	/** Delete Data from a Kunde */
+	public Kunde deleteKunde(Kunde kunde);
 
-	// Kundendaten aktualisieren
-	public boolean updateCustomer(Kunde kunde);
+	/** update an excisting Kunde */
+	public Kunde updateKunde(Kunde kunde);
 
-	// alle Kunde suchen
+	/** get a List with all Kunden */
 	public List<Kunde> getKundeList();
 
 	// Länderkürzel
-	public List<Kunde> getLaenderkuerzelList();
+	// public List<Kunde> getKundenInLaender();
 
-	public Kunde getKunde(String kundenname);
+	/** get a List with possible Kunden after searching a name */
+	public List<Kunde> getKunden(String searchName);
 
-	public Kunde getKunde(int id);
+	/** get a Kunde by id */
+	public Kunde getKunde(int kundenid);
 
-	public Kunde getSAPnr(String sapkundennr);
+	/**
+	 * get ONE Kunde and Verbundsschluessel, Kunde and Kartentechnologien, Kunde
+	 * and Seriennummern by searching a id
+	 */
+	public Kunde getKundeWithVerbundschluessel(int kundenid);
 
-	public Kunde getSAPstatus(String sapstatus);
+	public Kunde getKundeWithKartentechnologien(int kundenid);
 
-	public Kunde getHochschulregionnummer(String hochschulregionnummer);
+	public Kunde getKundeWithSeriennummern(int kundenid);
 
-	public Kunde getHochschulnummer(String hochschulnummer);
-
-	public Kunde getFremdsystemnummer(String fremdsystemnummer);
-
-	public Kunde getkommentar(String kommentar);
-
-	public boolean setkommentar(String kommentar);
-
-	public List<Kunde> getKundeWithVerbundschluessel();
-
-	public List<Kunde> getKundeWithKartentechnologien();
-
-	public List<Kunde> getKundeWithSeriennummern();
+	/** Get a List with ALL Kunden and Kartentechnologien */
+	public List<Kunde> getKundeWithKartentechList();
 
 }
