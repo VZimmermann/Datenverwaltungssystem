@@ -16,137 +16,161 @@ public class KundeService implements IKundeService {
 
 	private IKundeDao kundeDao;
 
+	/** Create a new Kunde */
 	@Override
-	public List<Kunde> getLaenderkuerzelList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean createCustomer(Kunde kunde) {
+	public Kunde createKunde(Kunde kunde) {
 		if (kunde != null) {
 			try {
 				kundeDao.doSave(kunde);
-				logger.debug(" Service Create Kunde");
-				return true;
+				logger.debug("Service Create Kunde");
+				return kunde;
 			} catch (DataException e) {
 				logger.debug("EX", e);
 			}
 		}
-		return false;
+		return null;
 	}
 
+	/** Delete Data from a Kunde */
 	@Override
-	public boolean deleteCustomer(Kunde kunde) {
+	public Kunde deleteKunde(Kunde kunde) {
 		if (kunde != null && kunde.getId() != 0) {
 			try {
 				kundeDao.doDelete(kunde);
-				logger.debug(" Service Delete Kunde");
-				return true;
+				logger.debug("Service Delete Kunde");
+				return kunde;
 			} catch (DataException e) {
 				logger.debug("EX", e);
 			}
 		}
-		return false;
+		return null;
 	}
 
+	/** update an excisting Kunde */
 	@Override
-	public boolean updateCustomer(Kunde kunde) {
+	public Kunde updateKunde(Kunde kunde) {
 		if (kunde != null && kunde.getId() != 0) {
 			try {
 				kundeDao.doUpdate(kunde);
-				logger.debug(" Service Update Kunde");
-				return true;
+				logger.debug("Service Update Kunde");
+				return kunde;
 			} catch (DataException e) {
 				logger.debug("EX", e);
 			}
 		}
-		return false;
+		return null;
 	}
 
+	/** get a List with all Kunden */
 	@Override
 	public List<Kunde> getKundeList() {
-		// TODO Auto-generated method stub
+		try {
+			List<Kunde> kunde = kundeDao.findKunde();
+			// isEmpty überprüft ob kun initialisiert wurde
+			if (kunde != null && !kunde.isEmpty())
+				return kunde;
+
+		} catch (DataException e) {
+			logger.debug("List is empty", e);
+		}
 		return null;
 	}
 
+	// @Override
+	// public List<Kunde> getKundenInLaender() {
+	//
+	// return null;
+	// }
+
+	/** get a List with possible Kunden after searching a name */
 	@Override
-	public Kunde getKunde(String kundenname) {
-		// TODO Auto-generated method stub
+	public List<Kunde> getKunden(String searchName) {
+
+		try {
+			List<Kunde> kunstr = kundeDao.findbyName(searchName);
+			if (kunstr != null && !kunstr.isEmpty())
+				return kunstr;
+		} catch (DataException e) {
+			logger.debug("Kein Kunde vorhanden", e);
+		}
 		return null;
 	}
 
+	/** get a Kunde by id */
 	@Override
-	public Kunde getKunde(int id) {
-		// TODO Auto-generated method stub
+	public Kunde getKunde(int kundenid) {
+		if (kundenid != 0) {
+			try {
+				Kunde kunid = kundeDao.findById(kundenid);
+				return kunid;
+			} catch (DataException e) {
+				logger.debug("Kein Kunde mit der ID gefunden", e);
+			}
+		}
 		return null;
 	}
 
-	@Override
-	public Kunde getSAPnr(String sapkundennr) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Kunde getSAPstatus(String sapstatus) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Kunde getHochschulregionnummer(String hochschulregionnummer) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Kunde getHochschulnummer(String hochschulnummer) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Kunde getFremdsystemnummer(String fremdsystemnummer) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Kunde getkommentar(String kommentar) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean setkommentar(String kommentar) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List<Kunde> getKundeWithVerbundschluessel() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/*
-	 * SETTER FOR SPRING CONFIG
+	/**
+	 * get a Kunde and Verbundsschluessel, Kunde and Kartentechnologien, Kunde
+	 * and Seriennummern by searching a id
 	 */
+	@Override
+	public Kunde getKundeWithVerbundschluessel(int kundenid) {
+		if (kundenid != 0) {
+			try {
+				Kunde kundever = kundeDao.findWithVerbundschluessel(kundenid);
+				return kundever;
+			} catch (DataException e) {
+				logger.debug("Kein Kunde mit dieser ID gefunden");
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Kunde getKundeWithKartentechnologien(int kundenid) {
+		if (kundenid != 0) {
+			try {
+				Kunde kundekart = kundeDao.findWithBags(kundenid);
+				return kundekart;
+			} catch (DataException e) {
+				logger.debug("Kein Ergebnis", e);
+			}
+		}
+		return null;
+	}
+
+	public List<Kunde> getKundeWithKartentechList() {
+		try {
+			List<Kunde> kundelist = kundeDao.findAllWithBags();
+			if (kundelist != null && !kundelist.isEmpty())
+				return kundelist;
+		} catch (DataException e) {
+			logger.debug("Kein Ergebnis", e);
+		}
+		return null;
+	}
+
+	@Override
+	public Kunde getKundeWithSeriennummern(int kundenid) {
+		if (kundenid != 0) {
+			try {
+				Kunde kundeser = kundeDao.findWithSeriennummern(kundenid);
+				return kundeser;
+			} catch (DataException e) {
+				logger.debug("Kein Ergebnis", e);
+			}
+		}
+
+		return null;
+	}
+
+	public IKundeDao getKundeDao() {
+		return kundeDao;
+	}
+
 	public void setKundeDao(IKundeDao kundeDao) {
 		this.kundeDao = kundeDao;
-	}
-
-	@Override
-	public List<Kunde> getKundeWithKartentechnologien() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Kunde> getKundeWithSeriennummern() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
